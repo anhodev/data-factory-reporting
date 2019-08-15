@@ -312,7 +312,7 @@ var AlertService = /** @class */ (function () {
 /*!************************************!*\
   !*** ./src/app/_services/index.ts ***!
   \************************************/
-/*! exports provided: AlertService, twentyFourHoursActivityService */
+/*! exports provided: twentyFourHoursActivityService, AlertService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -660,6 +660,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+;
 
 
 
@@ -714,6 +715,7 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 { provide: _angular_common__WEBPACK_IMPORTED_MODULE_11__["APP_BASE_HREF"], useValue: '/' },
+                { provide: _angular_common__WEBPACK_IMPORTED_MODULE_11__["LocationStrategy"], useClass: _angular_common__WEBPACK_IMPORTED_MODULE_11__["HashLocationStrategy"] },
                 _services__WEBPACK_IMPORTED_MODULE_24__["AlertService"],
                 _services__WEBPACK_IMPORTED_MODULE_24__["twentyFourHoursActivityService"],
             ],
