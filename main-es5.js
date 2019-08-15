@@ -100,6 +100,17 @@ module.exports = "<h4 class=\"card-title\">Process Time Details <span class=\"fl
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/components/request-slip-save-throughput-chart/request-slip-save-throughput-chart.component.html":
+/*!*******************************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/components/request-slip-save-throughput-chart/request-slip-save-throughput-chart.component.html ***!
+  \*******************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"text-center p-5\" *ngIf=\"isLoading\">\n    <img src=\"assets/images/loading.svg\">\n</div>\n<div id=\"request-slip-save-throughput-chart\"></div>"
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/index.js!./src/app/components/response-time-vs-throughput-chart/response-time-vs-throughput-chart.component.html":
 /*!*****************************************************************************************************************************************!*\
   !*** ./node_modules/raw-loader!./src/app/components/response-time-vs-throughput-chart/response-time-vs-throughput-chart.component.html ***!
@@ -217,7 +228,7 @@ module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>request-and-slip-save-throughput works!</p>\n"
+module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">\n            <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n                <i class=\"mdi mdi-home\"></i>\n            </span>\n            24h Activity Dashboard\n        </h3>\n        <nav aria-label=\"breadcrumb\">\n            <ul class=\"breadcrumb\">\n                <li class=\"breadcrumb-item active\" aria-current=\"page\">\n                    Request and Slip Save Throughput\n                </li>\n                <li class=\"breadcrumb-item\" aria-current=\"page\">\n                    <a (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a>\n                </li>\n            </ul>\n        </nav>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-md-12 grid-margin\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <app-request-slip-save-throughput-chart (onDataChanged)=\"onDataChanged($event)\"></app-request-slip-save-throughput-chart>\n    \n                    <div class=\"table-responsive\">\n                            <table class=\"table table-header-dark\">\n                                <thead>\n                                    <tr>\n                                        <th>Timestamp</th>\n                                        <th>Price Request Count</th>\n                                        <!-- <th>Price Request Speed Ms Avg</th> -->\n                                        <!-- <th>Price Request Speed Ms Min</th> -->\n                                        <!-- <th>Price Request Speed Ms Max</th> -->\n                                        <th>Slip SaveC ount</th>\n                                        <!-- <th>Slip Save Speed Ms Avg</th>\n                                        <th>Slip Save Speed Ms Min</th>\n                                        <th>Slip Save Speed Ms Max</th> -->\n                                    </tr>\n                                </thead>\n                                <tbody *ngIf=\"isLoading\">\n                                    <tr>\n                                        <td colspan=\"3\" class=\"text-center\">\n                                            <img src=\"assets/images/loading.svg\">\n                                        </td>\n                                    </tr>\n                                </tbody>\n                                <tbody *ngIf=\"!isLoading && (!data || data.length == 0)\">\n                                    <tr>\n                                        <td colspan=\"3\" class=\"text-center\">\n                                            No data.\n                                        </td>\n                                    </tr>\n                                </tbody>\n                                <tbody *ngIf=\"!isLoading && data && data.length > 0\">\n                                    <tr\n                                        *ngFor=\"let d of data | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                                        <td>{{d.Timestamp}}</td>\n                                        <td>{{d.PriceRequestCount}}</td>\n                                        <!-- <td>{{d.PriceRequestSpeedMsAvg}}</td>\n                                        <td>{{d.PriceRequestSpeedMsMin}}</td>\n                                        <td>{{d.PriceRequestSpeedMsMax}}</td> -->\n                                        <td>{{d.SlipSaveCount}}</td>\n                                        <!-- <td>{{d.SlipSaveSpeedMsAvg}}</td>\n                                        <td>{{d.SlipSaveSpeedMsMin}}</td>\n                                        <td>{{d.SlipSaveSpeedMsMax}}</td>\n                                    </tr> -->\n                                </tbody>\n                            </table>\n                        </div>\n        \n                        <ngb-pagination *ngIf=\"data && data.length > pageInfo.pageSize\" [collectionSize]=\"data.length\"\n                            [(page)]=\"pageInfo.pageNumber\" [maxSize]=\"10\" [pageSize]=\"pageInfo.pageSize\"\n                            class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>\n                </div>\n            </div>\n        </div>\n    </div>"
 
 /***/ }),
 
@@ -250,7 +261,7 @@ module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-header\">\n    <h3 class=\"page-title\">\n        <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n            <i class=\"mdi mdi-home\"></i>\n        </span>\n        24h Activity Dashboard\n    </h3>\n    <!-- <nav aria-label=\"breadcrumb\">\n        <ul class=\"breadcrumb\">\n            <li class=\"breadcrumb-item active\" aria-current=\"page\">\n                <span></span>Overview\n                <i class=\"mdi mdi-alert-circle-outline icon-sm text-primary align-middle\"></i>\n            </li>\n        </ul>\n    </nav> -->\n</div>\n<div class=\"row\">\n    <div class=\"col-md-4 stretch-card grid-margin\">\n        <div class=\"card bg-gradient-danger card-img-holder text-white\">\n            <div class=\"card-body\">\n                <img src=\"assets/images/dashboard/circle.svg\" class=\"card-img-absolute\" alt=\"circle-image\" />\n                <h4 class=\"font-weight-normal mb-3\">Clients\n                    <i class=\"mdi mdi-chart-line mdi-24px float-right\"></i>\n                </h4>\n                <h2 class=\"mb-5\">15,0000</h2>\n                <!-- <h6 class=\"card-text\">Increased by 60%</h6> -->\n            </div>\n        </div>\n    </div>\n    <div class=\"col-md-4 stretch-card grid-margin\">\n        <div class=\"card bg-gradient-info card-img-holder text-white\">\n            <div class=\"card-body\">\n                <img src=\"assets/images/dashboard/circle.svg\" class=\"card-img-absolute\" alt=\"circle-image\" />\n                <h4 class=\"font-weight-normal mb-3\">Errors\n                    <i class=\"mdi mdi-bookmark-outline mdi-24px float-right\"></i>\n                </h4>\n                <h2 class=\"mb-5\">45,6334</h2>\n                <h6 class=\"card-text\">Last error: 10 Aug 2019 02:02:00 PM</h6>\n            </div>\n        </div>\n    </div>\n    <div class=\"col-md-4 stretch-card grid-margin\">\n        <div class=\"card bg-gradient-success card-img-holder text-white\">\n            <div class=\"card-body\">\n                <img src=\"assets/images/dashboard/circle.svg\" class=\"card-img-absolute\" alt=\"circle-image\" />\n                <h4 class=\"font-weight-normal mb-3\">Requests\n                    <i class=\"mdi mdi-diamond mdi-24px float-right\"></i>\n                </h4>\n                <h2 class=\"mb-5\">95,5741</h2>\n                <h6 class=\"card-text\">Last request: 14 Aug 2019 09:01:00 AM</h6>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-peak-requests-chart></app-peak-requests-chart>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-response-time-vs-throughput-chart></app-response-time-vs-throughput-chart>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-process-time-details-table></app-process-time-details-table>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-slips-per-client-table></app-slips-per-client-table>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-error-logs-table></app-error-logs-table>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"page-header\">\n    <h3 class=\"page-title\">\n        <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n            <i class=\"mdi mdi-home\"></i>\n        </span>\n        24h Activity Dashboard\n    </h3>\n    <!-- <nav aria-label=\"breadcrumb\">\n        <ul class=\"breadcrumb\">\n            <li class=\"breadcrumb-item active\" aria-current=\"page\">\n                <span></span>Overview\n                <i class=\"mdi mdi-alert-circle-outline icon-sm text-primary align-middle\"></i>\n            </li>\n        </ul>\n    </nav> -->\n</div>\n<div class=\"row\">\n    <div class=\"col-md-4 stretch-card grid-margin\">\n        <div class=\"card bg-gradient-danger card-img-holder text-white\">\n            <div class=\"card-body\">\n                <img src=\"assets/images/dashboard/circle.svg\" class=\"card-img-absolute\" alt=\"circle-image\" />\n                <h4 class=\"font-weight-normal mb-3\">Clients\n                    <i class=\"mdi mdi-chart-line mdi-24px float-right\"></i>\n                </h4>\n                <h2 class=\"mb-5\">15,0000</h2>\n                <!-- <h6 class=\"card-text\">Increased by 60%</h6> -->\n            </div>\n        </div>\n    </div>\n    <div class=\"col-md-4 stretch-card grid-margin\">\n        <div class=\"card bg-gradient-info card-img-holder text-white\">\n            <div class=\"card-body\">\n                <img src=\"assets/images/dashboard/circle.svg\" class=\"card-img-absolute\" alt=\"circle-image\" />\n                <h4 class=\"font-weight-normal mb-3\">Errors\n                    <i class=\"mdi mdi-bookmark-outline mdi-24px float-right\"></i>\n                </h4>\n                <h2 class=\"mb-5\">45,6334</h2>\n                <h6 class=\"card-text\">Last error: 10 Aug 2019 02:02:00 PM</h6>\n            </div>\n        </div>\n    </div>\n    <div class=\"col-md-4 stretch-card grid-margin\">\n        <div class=\"card bg-gradient-success card-img-holder text-white\">\n            <div class=\"card-body\">\n                <img src=\"assets/images/dashboard/circle.svg\" class=\"card-img-absolute\" alt=\"circle-image\" />\n                <h4 class=\"font-weight-normal mb-3\">Requests\n                    <i class=\"mdi mdi-diamond mdi-24px float-right\"></i>\n                </h4>\n                <h2 class=\"mb-5\">95,5741</h2>\n                <h6 class=\"card-text\">Last request: 14 Aug 2019 09:01:00 AM</h6>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-peak-requests-chart [inverted]=\"true\"></app-peak-requests-chart>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-response-time-vs-throughput-chart></app-response-time-vs-throughput-chart>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-process-time-details-table></app-process-time-details-table>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-slips-per-client-table></app-slips-per-client-table>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-error-logs-table></app-error-logs-table>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -312,7 +323,7 @@ var AlertService = /** @class */ (function () {
 /*!************************************!*\
   !*** ./src/app/_services/index.ts ***!
   \************************************/
-/*! exports provided: twentyFourHoursActivityService, AlertService */
+/*! exports provided: AlertService, twentyFourHoursActivityService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -643,11 +654,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_twenty_four_hours_dashboard_slips_per_client_slips_per_client_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./pages/twenty-four-hours-dashboard/slips-per-client/slips-per-client.component */ "./src/app/pages/twenty-four-hours-dashboard/slips-per-client/slips-per-client.component.ts");
 /* harmony import */ var _components_error_logs_table_error_logs_table_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/error-logs-table/error-logs-table.component */ "./src/app/components/error-logs-table/error-logs-table.component.ts");
 /* harmony import */ var _components_alert_alert_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/alert/alert.component */ "./src/app/components/alert/alert.component.ts");
-/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./_services */ "./src/app/_services/index.ts");
-/* harmony import */ var _components_slips_per_client_table_slips_per_client_table_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/slips-per-client-table/slips-per-client-table.component */ "./src/app/components/slips-per-client-table/slips-per-client-table.component.ts");
-/* harmony import */ var _components_process_time_details_table_process_time_details_table_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/process-time-details-table/process-time-details-table.component */ "./src/app/components/process-time-details-table/process-time-details-table.component.ts");
-/* harmony import */ var _components_peak_requests_chart_peak_requests_chart_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/peak-requests-chart/peak-requests-chart.component */ "./src/app/components/peak-requests-chart/peak-requests-chart.component.ts");
-/* harmony import */ var _components_response_time_vs_throughput_chart_response_time_vs_throughput_chart_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/response-time-vs-throughput-chart/response-time-vs-throughput-chart.component */ "./src/app/components/response-time-vs-throughput-chart/response-time-vs-throughput-chart.component.ts");
+/* harmony import */ var _components_slips_per_client_table_slips_per_client_table_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/slips-per-client-table/slips-per-client-table.component */ "./src/app/components/slips-per-client-table/slips-per-client-table.component.ts");
+/* harmony import */ var _components_process_time_details_table_process_time_details_table_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/process-time-details-table/process-time-details-table.component */ "./src/app/components/process-time-details-table/process-time-details-table.component.ts");
+/* harmony import */ var _components_peak_requests_chart_peak_requests_chart_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/peak-requests-chart/peak-requests-chart.component */ "./src/app/components/peak-requests-chart/peak-requests-chart.component.ts");
+/* harmony import */ var _components_response_time_vs_throughput_chart_response_time_vs_throughput_chart_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/response-time-vs-throughput-chart/response-time-vs-throughput-chart.component */ "./src/app/components/response-time-vs-throughput-chart/response-time-vs-throughput-chart.component.ts");
+/* harmony import */ var _components_request_slip_save_throughput_chart_request_slip_save_throughput_chart_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/request-slip-save-throughput-chart/request-slip-save-throughput-chart.component */ "./src/app/components/request-slip-save-throughput-chart/request-slip-save-throughput-chart.component.ts");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./_services */ "./src/app/_services/index.ts");
 
 
 
@@ -673,11 +685,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
 // Services
-
-
-
-
 
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -702,10 +715,11 @@ var AppModule = /** @class */ (function () {
                 _pages_twenty_four_hours_dashboard_slips_per_client_slips_per_client_component__WEBPACK_IMPORTED_MODULE_21__["SlipsPerClientComponent"],
                 _components_error_logs_table_error_logs_table_component__WEBPACK_IMPORTED_MODULE_22__["ErrorLogsTableComponent"],
                 _components_alert_alert_component__WEBPACK_IMPORTED_MODULE_23__["AlertComponent"],
-                _components_slips_per_client_table_slips_per_client_table_component__WEBPACK_IMPORTED_MODULE_25__["SlipsPerClientTableComponent"],
-                _components_process_time_details_table_process_time_details_table_component__WEBPACK_IMPORTED_MODULE_26__["ProcessTimeDetailsTableComponent"],
-                _components_peak_requests_chart_peak_requests_chart_component__WEBPACK_IMPORTED_MODULE_27__["PeakRequestsChartComponent"],
-                _components_response_time_vs_throughput_chart_response_time_vs_throughput_chart_component__WEBPACK_IMPORTED_MODULE_28__["ResponseTimeVsThroughputChartComponent"],
+                _components_slips_per_client_table_slips_per_client_table_component__WEBPACK_IMPORTED_MODULE_24__["SlipsPerClientTableComponent"],
+                _components_process_time_details_table_process_time_details_table_component__WEBPACK_IMPORTED_MODULE_25__["ProcessTimeDetailsTableComponent"],
+                _components_peak_requests_chart_peak_requests_chart_component__WEBPACK_IMPORTED_MODULE_26__["PeakRequestsChartComponent"],
+                _components_response_time_vs_throughput_chart_response_time_vs_throughput_chart_component__WEBPACK_IMPORTED_MODULE_27__["ResponseTimeVsThroughputChartComponent"],
+                _components_request_slip_save_throughput_chart_request_slip_save_throughput_chart_component__WEBPACK_IMPORTED_MODULE_28__["RequestSlipSaveThroughputChartComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -716,8 +730,8 @@ var AppModule = /** @class */ (function () {
             providers: [
                 { provide: _angular_common__WEBPACK_IMPORTED_MODULE_11__["APP_BASE_HREF"], useValue: '/' },
                 { provide: _angular_common__WEBPACK_IMPORTED_MODULE_11__["LocationStrategy"], useClass: _angular_common__WEBPACK_IMPORTED_MODULE_11__["HashLocationStrategy"] },
-                _services__WEBPACK_IMPORTED_MODULE_24__["AlertService"],
-                _services__WEBPACK_IMPORTED_MODULE_24__["twentyFourHoursActivityService"],
+                _services__WEBPACK_IMPORTED_MODULE_29__["AlertService"],
+                _services__WEBPACK_IMPORTED_MODULE_29__["twentyFourHoursActivityService"],
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
         })
@@ -1075,7 +1089,7 @@ var PeakRequestsChartComponent = /** @class */ (function () {
             chart: {
                 type: 'column',
                 zoomType: 'y',
-                inverted: false,
+                inverted: this.inverted,
                 height: '500px'
             },
             title: {
@@ -1112,6 +1126,9 @@ var PeakRequestsChartComponent = /** @class */ (function () {
         { type: src_app_services__WEBPACK_IMPORTED_MODULE_2__["AlertService"] },
         { type: src_app_services__WEBPACK_IMPORTED_MODULE_2__["twentyFourHoursActivityService"] }
     ]; };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+    ], PeakRequestsChartComponent.prototype, "inverted", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
     ], PeakRequestsChartComponent.prototype, "onDataChanged", void 0);
@@ -1200,6 +1217,191 @@ var ProcessTimeDetailsTableComponent = /** @class */ (function () {
         })
     ], ProcessTimeDetailsTableComponent);
     return ProcessTimeDetailsTableComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/request-slip-save-throughput-chart/request-slip-save-throughput-chart.component.scss":
+/*!*****************************************************************************************************************!*\
+  !*** ./src/app/components/request-slip-save-throughput-chart/request-slip-save-throughput-chart.component.scss ***!
+  \*****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcmVxdWVzdC1zbGlwLXNhdmUtdGhyb3VnaHB1dC1jaGFydC9yZXF1ZXN0LXNsaXAtc2F2ZS10aHJvdWdocHV0LWNoYXJ0LmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/components/request-slip-save-throughput-chart/request-slip-save-throughput-chart.component.ts":
+/*!***************************************************************************************************************!*\
+  !*** ./src/app/components/request-slip-save-throughput-chart/request-slip-save-throughput-chart.component.ts ***!
+  \***************************************************************************************************************/
+/*! exports provided: RequestSlipSaveThroughputChartComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequestSlipSaveThroughputChartComponent", function() { return RequestSlipSaveThroughputChartComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var src_app_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/_services */ "./src/app/_services/index.ts");
+
+
+
+
+var RequestSlipSaveThroughputChartComponent = /** @class */ (function () {
+    function RequestSlipSaveThroughputChartComponent(alertService, services) {
+        this.alertService = alertService;
+        this.services = services;
+        // loading flag
+        this.isLoading = false;
+        // paging
+        this.pageInfo = {
+            pageNumber: 1,
+            pageSize: 10
+        };
+        // list of requests
+        this.responses = [];
+        // list of PriceRequestCount
+        this.requests = [];
+        // list of SlipSaveCount
+        this.slips = [];
+        // event emitter
+        this.onDataChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+    }
+    RequestSlipSaveThroughputChartComponent.prototype.ngOnInit = function () {
+        this.getRequestSlipSaveThroughput();
+    };
+    RequestSlipSaveThroughputChartComponent.prototype.getRequestSlipSaveThroughput = function () {
+        var _this = this;
+        this.pageInfo.pageNumber = 1;
+        this.isLoading = true;
+        this.responses = [];
+        this.requests = [];
+        this.slips = [];
+        this.services.getRequestSlipSaveThroughput().pipe().subscribe(function (data) {
+            _this.onDataChanged.emit(data);
+            _this.responses = data;
+            _this.isLoading = false;
+            _this.prepareData();
+        }, function (error) {
+            _this.alertService.error(error, false);
+            _this.isLoading = false;
+        });
+    };
+    RequestSlipSaveThroughputChartComponent.prototype.prepareData = function () {
+        var _this = this;
+        this.responses.forEach(function (item) {
+            var mArray = item.Timestamp.split(' ');
+            var dateArray = mArray[0].split('-');
+            var timeArray = mArray[1].split(':');
+            var minute = Date.UTC(parseInt(dateArray[0]), parseInt(dateArray[1]), parseInt(dateArray[2]), parseInt(timeArray[0]), parseInt(timeArray[1]));
+            _this.requests.push([minute, parseInt(item.PriceRequestCount)]);
+            _this.slips.push([minute, parseInt(item.SlipSaveCount)]);
+        });
+        this.initChart();
+    };
+    RequestSlipSaveThroughputChartComponent.prototype.initChart = function () {
+        var options = {
+            chart: {
+                type: 'spline',
+                zoomType: 'x',
+                height: '500px',
+            },
+            title: {
+                text: 'Request and Slip Save Throughput'
+            },
+            xAxis: {
+                type: 'datetime',
+                title: {
+                    text: 'Hours'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                },
+                min: 0
+            },
+            // tooltip: {
+            //   headerFormat: '<b>{series.name}</b><br>',
+            //   pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+            // },
+            plotOptions: {
+                // spline: {
+                //   marker: {
+                //     enabled: true
+                //   }
+                // }
+                area: {
+                    marker: {
+                        radius: 2
+                    },
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    },
+                    threshold: null
+                }
+            },
+            colors: ['#f9a226', '#3e4b5b'],
+            series: [
+                {
+                    name: 'Price Request (per sec)',
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, '#fdcf4e'],
+                            [1, new highcharts__WEBPACK_IMPORTED_MODULE_2__["Color"]("#fdcf4e").setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    data: this.requests
+                }, {
+                    name: 'Slip Saves (per min)',
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, '#434a54'],
+                            [1, new highcharts__WEBPACK_IMPORTED_MODULE_2__["Color"]("#434a54").setOpacity(0.5).get('rgba')]
+                        ]
+                    },
+                    data: this.slips
+                }
+            ]
+        };
+        highcharts__WEBPACK_IMPORTED_MODULE_2__["chart"]('request-slip-save-throughput-chart', options);
+    };
+    RequestSlipSaveThroughputChartComponent.ctorParameters = function () { return [
+        { type: src_app_services__WEBPACK_IMPORTED_MODULE_3__["AlertService"] },
+        { type: src_app_services__WEBPACK_IMPORTED_MODULE_3__["twentyFourHoursActivityService"] }
+    ]; };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+    ], RequestSlipSaveThroughputChartComponent.prototype, "onDataChanged", void 0);
+    RequestSlipSaveThroughputChartComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-request-slip-save-throughput-chart',
+            template: __webpack_require__(/*! raw-loader!./request-slip-save-throughput-chart.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/request-slip-save-throughput-chart/request-slip-save-throughput-chart.component.html"),
+            styles: [__webpack_require__(/*! ./request-slip-save-throughput-chart.component.scss */ "./src/app/components/request-slip-save-throughput-chart/request-slip-save-throughput-chart.component.scss")]
+        })
+    ], RequestSlipSaveThroughputChartComponent);
+    return RequestSlipSaveThroughputChartComponent;
 }());
 
 
@@ -1333,6 +1535,7 @@ var ResponseTimeVsThroughputChartComponent = /** @class */ (function () {
                     threshold: null
                 }
             },
+            colors: ['#f9a226', '#3e4b5b'],
             series: [
                 {
                     name: 'Response Time (ms)',
@@ -1344,8 +1547,8 @@ var ResponseTimeVsThroughputChartComponent = /** @class */ (function () {
                             y2: 1
                         },
                         stops: [
-                            [0, '#ffffff'],
-                            [1, '#90caf9']
+                            [0, '#fdcf4e'],
+                            [1, new highcharts__WEBPACK_IMPORTED_MODULE_2__["Color"]("#fdcf4e").setOpacity(0).get('rgba')]
                         ]
                     },
                     data: this.responseTime
@@ -1359,8 +1562,8 @@ var ResponseTimeVsThroughputChartComponent = /** @class */ (function () {
                             y2: 1
                         },
                         stops: [
-                            [0, '#ffffff'],
-                            [1, '#343a40']
+                            [0, '#434a54'],
+                            [1, new highcharts__WEBPACK_IMPORTED_MODULE_2__["Color"]("#434a54").setOpacity(0.5).get('rgba')]
                         ]
                     },
                     data: this.requests
@@ -1878,8 +2081,20 @@ __webpack_require__.r(__webpack_exports__);
 
 var RequestAndSlipSaveThroughputComponent = /** @class */ (function () {
     function RequestAndSlipSaveThroughputComponent() {
+        this.data = [];
+        // loading flag
+        this.isLoading = true;
+        // paging
+        this.pageInfo = {
+            pageNumber: 1,
+            pageSize: 30
+        };
     }
     RequestAndSlipSaveThroughputComponent.prototype.ngOnInit = function () {
+    };
+    RequestAndSlipSaveThroughputComponent.prototype.onDataChanged = function (data) {
+        this.data = data;
+        this.isLoading = false;
     };
     RequestAndSlipSaveThroughputComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
