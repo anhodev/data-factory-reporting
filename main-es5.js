@@ -1286,19 +1286,17 @@ var ResponseTimeVsThroughputChartComponent = /** @class */ (function () {
     ResponseTimeVsThroughputChartComponent.prototype.initChart = function () {
         var options = {
             chart: {
-                type: 'line'
+                type: 'area',
+                zoomType: 'x',
+                height: '500px',
             },
             title: {
                 text: 'Response time vs Throughput'
             },
             xAxis: {
                 type: 'datetime',
-                // dateTimeLabelFormats: { // don't display the dummy year
-                //   month: '%e. %b',
-                //   year: '%b'
-                // },
                 title: {
-                    text: 'Date'
+                    text: 'Hours'
                 }
             },
             yAxis: {
@@ -1312,19 +1310,54 @@ var ResponseTimeVsThroughputChartComponent = /** @class */ (function () {
             //   pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
             // },
             plotOptions: {
-                spline: {
+                // spline: {
+                //   marker: {
+                //     enabled: true
+                //   }
+                // }
+                area: {
                     marker: {
-                        enabled: true
-                    }
+                        radius: 2
+                    },
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    },
+                    threshold: null
                 }
             },
-            colors: ['#343a40', '#007bff'],
             series: [
                 {
                     name: 'Response Time (ms)',
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, '#ffffff'],
+                            [1, '#90caf9']
+                        ]
+                    },
                     data: this.responseTime
                 }, {
                     name: 'Requests per min',
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, '#ffffff'],
+                            [1, '#343a40']
+                        ]
+                    },
                     data: this.requests
                 }
             ]
