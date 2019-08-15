@@ -34,3 +34,14 @@
     }
   }
 }
+
+.table{
+  &.table-header-dark{
+    thead {
+      th {
+        background-color: #5e7188;
+        color: $white;
+      }
+    }
+  }
+}
