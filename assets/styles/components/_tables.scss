@@ -2,6 +2,7 @@
 
 .table {
   margin-bottom: 0;
+  border: 1px solid $border-color;
   thead {
     th {
       border-top: 0;
@@ -18,6 +19,10 @@
     vertical-align: middle;
     font-size: $default-font-size;
     line-height: 1;
+    padding: 0.7rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     img {
       width: 36px;
       height: 36px;
@@ -43,5 +48,33 @@
         color: $white;
       }
     }
+  }
+}
+
+
+/*md-sort*/
+.table > thead > tr > th.sortable{
+  cursor: pointer;
+}
+
+.table > thead > tr > th > i.md-sort-indicator {
+  position: absolute;
+}
+
+.table > thead > tr > th.sortable.asc > i.md-sort-indicator:before {
+  content: "\f143";
+}
+
+.table > thead > tr > th.sortable.desc > i.md-sort-indicator:before {
+  content: "\f140";
+}
+
+.page-link{
+  padding: 0.2rem 0.6rem;
+}
+
+@media (max-width: 360px) {
+  .page-link{
+    padding: 0.2rem 0.4rem;
   }
 }

@@ -52,7 +52,7 @@ module.exports = "<div *ngIf=\"message\" [ngClass]=\"{ 'alert': message, 'alert-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h4 class=\"card-title\">Error Logs <span class=\"float-none float-sm-right d-block mt-1 mt-sm-0 text-center\"> <i\n            class=\"mdi mdi-refresh\" (click)=\"getErrorLogs()\"></i></span> </h4>\n<div class=\"table-responsive\">\n    <table class=\"table table-header-dark\">\n        <thead>\n            <tr>\n                <th width=\"15%\">FirstTime</th>\n                <th width=\"15%\">LastTime</th>\n                <th width=\"5%\">Count</th>\n                <th width=\"15%\">Service</th>\n                <th>Message</th>\n            </tr>\n        </thead>\n        <tbody *ngIf=\"!errors || isLoading\">\n            <tr>\n                <td colspan=\"5\" class=\"text-center\">\n                    <img src=\"assets/images/loading.svg\">\n                </td>\n            </tr>\n        </tbody>\n        <tbody *ngIf=\"!isLoading && (!errors || errors.length == 0)\">\n            <tr>\n                <td colspan=\"5\" class=\"text-center\">\n                    No error found.\n                </td>\n            </tr>\n        </tbody>\n        <tbody *ngIf=\"!isLoading && errors && errors.length > 0\">\n            <tr\n                *ngFor=\"let err of errors | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                <td>\n                    {{err.FirstTime | date: 'dd/MM/yyyy HH:mm:ss'}}\n                </td>\n                <td>\n                    {{err.LastTime | date: 'dd/MM/yyyy HH:mm:ss'}}\n                </td>\n                <td>\n                    {{err.Count}}\n                </td>\n                <td>\n                    {{err.Service}}\n                </td>\n                <td>\n                    {{err.Message}}\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<ngb-pagination *ngIf=\"errors && errors.length > pageInfo.pageSize\" [collectionSize]=\"errors.length\" [(page)]=\"pageInfo.pageNumber\"\n                        [maxSize]=\"10\" [pageSize]=\"pageInfo.pageSize\"\n                        class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>"
+module.exports = "<h4 class=\"card-title\">Error Logs <span class=\"float-none float-sm-right d-block mt-1 mt-sm-0 text-center\"> <i\n            class=\"mdi mdi-refresh\" (click)=\"getErrorLogs()\"></i></span> </h4>\n<div class=\"table-responsive\">\n    <table class=\"table table-header-dark\" mdbTable>\n        <thead>\n            <tr>\n                <th width=\"15%\" appMdSort=\"FirstTime\" isNumber=\"false\" (sortChange)=\"sortChange($event)\">FirstTime</th>\n                <th width=\"15%\" appMdSort=\"LastTime\" isNumber=\"false\" (sortChange)=\"sortChange($event)\">LastTime</th>\n                <th width=\"10%\" appMdSort=\"Count\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">Count</th>\n                <th width=\"15%\" appMdSort=\"Service\" isNumber=\"false\" (sortChange)=\"sortChange($event)\">Service</th>\n                <th>Message</th>\n            </tr>\n        </thead>\n        <tbody *ngIf=\"!errors || isLoading\">\n            <tr>\n                <td colspan=\"5\" class=\"text-center\">\n                    <img src=\"assets/images/loading.svg\">\n                </td>\n            </tr>\n        </tbody>\n        <tbody *ngIf=\"!isLoading && (!errors || errors.length == 0)\">\n            <tr>\n                <td colspan=\"5\" class=\"text-center\">\n                    No error found.\n                </td>\n            </tr>\n        </tbody>\n        <tbody *ngIf=\"!isLoading && errors && errors.length > 0\">\n            <tr\n                *ngFor=\"let err of errors | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                <td>\n                    {{err.FirstTime | date: 'dd/MM/yyyy HH:mm:ss'}}\n                </td>\n                <td>\n                    {{err.LastTime | date: 'dd/MM/yyyy HH:mm:ss'}}\n                </td>\n                <td>\n                    {{err.Count}}\n                </td>\n                <td>\n                    {{err.Service}}\n                </td>\n                <td>\n                    {{err.Message}}\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<ngb-pagination *ngIf=\"errors && errors.length > pageInfo.pageSize\" [collectionSize]=\"errors.length\" [(page)]=\"pageInfo.pageNumber\"\n                        [maxSize]=\"5\" [pageSize]=\"pageInfo.pageSize\"\n                        class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>"
 
 /***/ }),
 
@@ -96,7 +96,7 @@ module.exports = "<div class=\"text-center p-5\" *ngIf=\"isLoading\">\n    <img 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h4 class=\"card-title\">Process Time Details <span class=\"float-none float-sm-right d-block mt-1 mt-sm-0 text-center\"> <i\n            class=\"mdi mdi-refresh\" (click)=\"getProcessTimeDetails()\"></i></span> </h4>\n<div class=\"table-responsive\">\n    <table class=\"table table-header-dark\">\n        <thead>\n            <tr>\n                <th width=\"auto\">Client</th>\n                <th width=\"auto\">&lt; 50</th>\n                <th width=\"auto\">&lt; 100</th>\n                <th width=\"auto\">&lt; 200</th>\n                <th width=\"auto\">&lt; 300</th>\n                <th width=\"auto\">&lt; 400</th>\n                <th width=\"auto\">&lt; 500</th>\n                <th width=\"auto\">500 To 1000</th>\n                <th width=\"auto\">1k To 2k</th>\n                <th width=\"auto\">2k To 3k</th>\n                <th width=\"auto\">3k To 5k</th>\n                <th width=\"auto\">5k To 10k</th>\n                <th width=\"auto\">10k To 20k</th>\n            </tr>\n        </thead>\n        <tbody *ngIf=\"!details || isLoading\">\n            <tr>\n                <td colspan=\"13\" class=\"text-center\">\n                    <img src=\"assets/images/loading.svg\">\n                </td>\n            </tr>\n        </tbody>\n        <tbody *ngIf=\"!isLoading && (!details || details.length == 0)\">\n            <tr>\n                <td colspan=\"13\" class=\"text-center\">\n                    No slips found.\n                </td>\n            </tr>\n        </tbody>\n        <tbody *ngIf=\"!isLoading && details && details.length > 0\">\n            <tr\n                *ngFor=\"let dt of details | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                <td>{{dt.Client}}</td>\n                <td>{{dt.LessThan50 | number}}</td>\n                <td>{{dt.LessThan100 | number}}</td>\n                <td>{{dt.LessThan200 | number}}</td>\n                <td>{{dt.LessThan300 | number}}</td>\n                <td>{{dt.LessThan400 | number}}</td>\n                <td>{{dt.LessThan500 | number}}</td>\n                <td>{{dt['500To1000'] | number}}</td>\n                <td>{{dt['1kTo2k'] | number}}</td>\n                <td>{{dt['2kTo3k'] | number}}</td>\n                <td>{{dt['3kTo5k'] | number}}</td>\n                <td>{{dt['5kTo10k'] | number}}</td>\n                <td>{{dt['10kTo20k'] | number}}</td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<ngb-pagination *ngIf=\"details && details.length > pageInfo.pageSize\" [collectionSize]=\"details.length\"\n    [(page)]=\"pageInfo.pageNumber\" [maxSize]=\"10\" [pageSize]=\"pageInfo.pageSize\"\n    class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>"
+module.exports = "<h4 class=\"card-title\">Process Time Details <span class=\"float-none float-sm-right d-block mt-1 mt-sm-0 text-center\"> <i\n            class=\"mdi mdi-refresh\" (click)=\"getProcessTimeDetails()\"></i></span> </h4>\n<div class=\"table-responsive\">\n    <table class=\"table table-header-dark\">\n        <thead>\n            <tr>\n                <th width=\"auto\" appMdSort=\"Client\" isNumber=\"false\" (sortChange)=\"sortChange($event)\">Client</th>\n                <th width=\"auto\" appMdSort=\"LessThan50\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">&lt; 50</th>\n                <th width=\"auto\" appMdSort=\"LessThan100\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">&lt; 100</th>\n                <th width=\"auto\" appMdSort=\"LessThan200\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">&lt; 200</th>\n                <th width=\"auto\" appMdSort=\"LessThan300\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">&lt; 300</th>\n                <th width=\"auto\" appMdSort=\"LessThan400\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">&lt; 400</th>\n                <th width=\"auto\" appMdSort=\"LessThan500\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">&lt; 500</th>\n                <th width=\"auto\" appMdSort=\"500To1000\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">500 To 1000</th>\n                <th width=\"auto\" appMdSort=\"1kTo2k\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">1k To 2k</th>\n                <th width=\"auto\" appMdSort=\"2kTo3k\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">2k To 3k</th>\n                <th width=\"auto\" appMdSort=\"3kTo5k\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">3k To 5k</th>\n                <th width=\"auto\" appMdSort=\"5kTo10k\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">5k To 10k</th>\n                <th width=\"auto\" appMdSort=\"10kTo20k\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">10k To 20k</th>\n            </tr>\n        </thead>\n        <tbody *ngIf=\"!details || isLoading\">\n            <tr>\n                <td colspan=\"13\" class=\"text-center\">\n                    <img src=\"assets/images/loading.svg\">\n                </td>\n            </tr>\n        </tbody>\n        <tbody *ngIf=\"!isLoading && (!details || details.length == 0)\">\n            <tr>\n                <td colspan=\"13\" class=\"text-center\">\n                    No slips found.\n                </td>\n            </tr>\n        </tbody>\n        <tbody *ngIf=\"!isLoading && details && details.length > 0\">\n            <tr\n                *ngFor=\"let dt of details | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                <td>{{dt.Client}}</td>\n                <td>{{dt.LessThan50 | number}}</td>\n                <td>{{dt.LessThan100 | number}}</td>\n                <td>{{dt.LessThan200 | number}}</td>\n                <td>{{dt.LessThan300 | number}}</td>\n                <td>{{dt.LessThan400 | number}}</td>\n                <td>{{dt.LessThan500 | number}}</td>\n                <td>{{dt['500To1000'] | number}}</td>\n                <td>{{dt['1kTo2k'] | number}}</td>\n                <td>{{dt['2kTo3k'] | number}}</td>\n                <td>{{dt['3kTo5k'] | number}}</td>\n                <td>{{dt['5kTo10k'] | number}}</td>\n                <td>{{dt['10kTo20k'] | number}}</td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<ngb-pagination *ngIf=\"details && details.length > pageInfo.pageSize\" [collectionSize]=\"details.length\"\n    [(page)]=\"pageInfo.pageNumber\" [maxSize]=\"5\" [pageSize]=\"pageInfo.pageSize\"\n    class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>"
 
 /***/ }),
 
@@ -129,7 +129,7 @@ module.exports = "<div class=\"text-center p-5\" *ngIf=\"isLoading\">\r\n    <im
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"sidebar sidebar-offcanvas animated fadeInLeft\" id=\"sidebar\">\r\n  <ul class=\"nav\">\r\n    <li class=\"nav-item\" (click)=\"goTo('live-activity-dashboard')\">\r\n      <a class=\"nav-link\">\r\n        <span class=\"menu-title\">Live Activity Dashboard</span>\r\n        <i class=\"mdi mdi-chart-timeline menu-icon\"></i>\r\n      </a>\r\n    </li>\r\n    <!-- <li class=\"nav-item\" data-toggle=\"collapse\" href=\"#twenty-four-hours-sub-menu\" aria-expanded=\"true\">\r\n      <a class=\"nav-link active\">\r\n        <span class=\"menu-title\">24h Activity Dashboard</span>\r\n        <i class=\"mdi mdi-chart-line menu-icon\"></i>\r\n      </a>\r\n    </li> -->\r\n    <li class=\"nav-item\">\r\n        <a class=\"nav-link active\" data-toggle=\"collapse\" href=\"#twenty-four-hours-sub-menu\" aria-expanded=\"true\" aria-controls=\"twenty-four-hours-sub-menu\">\r\n          <span class=\"menu-title\">24h Activity Dashboard</span>\r\n          <i class=\"menu-arrow\"></i>\r\n          <i class=\"mdi mdi-chart-line menu-icon\"></i>\r\n        </a>\r\n        <div class=\"collapse show\" id=\"twenty-four-hours-sub-menu\">\r\n            <ul class=\"nav flex-column sub-menu\">\r\n              <!-- <li class=\"nav-item\"> <a class=\"nav-link\">Dashboard</a></li> -->\r\n              <li class=\"nav-item\" (click)=\"goTo('24h-activity-dashboard/error-logs')\"> <a class=\"nav-link\">Error Logs</a></li>\r\n              <li class=\"nav-item\" (click)=\"goTo('24h-activity-dashboard/peak-requests')\"> <a class=\"nav-link\">Peak Requests</a></li>\r\n              <li class=\"nav-item\" (click)=\"goTo('24h-activity-dashboard/process-time-details')\"> <a class=\"nav-link\">Process Time Details</a></li>              \r\n              <li class=\"nav-item\" (click)=\"goTo('24h-activity-dashboard/response-time-vs-throughput')\"> <a class=\"nav-link\">Response Time vs Throughput</a></li>\r\n              <li class=\"nav-item\" (click)=\"goTo('24h-activity-dashboard/request-and-slip-save-throughput')\"> <a class=\"nav-link\">Request And Slip Save Throughput</a></li>\r\n              <li class=\"nav-item\" (click)=\"goTo('24h-activity-dashboard/slips-per-client')\"> <a class=\"nav-link\">Slips Per Client</a></li>\r\n            </ul>\r\n          </div>\r\n      </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\">\r\n        <span class=\"menu-title\">Daily Report</span>\r\n        <i class=\"mdi mdi-chart-pie menu-icon\"></i>\r\n      </a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\">\r\n        <span class=\"menu-title\">Weekly Report</span>\r\n        <i class=\"mdi mdi-chart-bar menu-icon\"></i>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>"
+module.exports = "<nav class=\"sidebar sidebar-offcanvas animated fadeInLeft\" id=\"sidebar\">\r\n  <ul class=\"nav\">\r\n    <li class=\"nav-item\" (click)=\"goTo('live-activity-dashboard')\">\r\n      <a class=\"nav-link\">\r\n        <span class=\"menu-title\">Live Activity Dashboard</span>\r\n        <i class=\"mdi mdi-chart-timeline menu-icon\"></i>\r\n      </a>\r\n    </li>\r\n    <!-- <li class=\"nav-item\" data-toggle=\"collapse\" href=\"#twenty-four-hours-sub-menu\" aria-expanded=\"true\">\r\n      <a class=\"nav-link active\">\r\n        <span class=\"menu-title\">24h Activity Dashboard</span>\r\n        <i class=\"mdi mdi-chart-line menu-icon\"></i>\r\n      </a>\r\n    </li> -->\r\n    <li class=\"nav-item\" [ngClass]=\"{'active': currentRoute == '24h-activity-dashboard' || currentRoute == 'error-logs' || currentRoute == 'peak-requests' || currentRoute == 'process-time-details' || currentRoute == 'response-time-vs-throughput' || currentRoute == 'request-and-slip-save-throughput' || currentRoute == 'slips-per-client'}\">\r\n        <a class=\"nav-link active\" data-toggle=\"collapse\" href=\"#twenty-four-hours-sub-menu\" aria-expanded=\"true\" aria-controls=\"twenty-four-hours-sub-menu\">\r\n          <span class=\"menu-title\">24h Activity</span>\r\n          <i class=\"menu-arrow\"></i>\r\n          <i class=\"mdi mdi-chart-line menu-icon\"></i>\r\n        </a>\r\n        <div class=\"collapse show\" id=\"twenty-four-hours-sub-menu\">\r\n            <ul class=\"nav flex-column sub-menu\">\r\n              <li class=\"nav-item\" (click)=\"goTo('24h-activity-dashboard')\"> \r\n                <a class=\"nav-link\" [ngClass]=\"{'active': currentRoute == '24h-activity-dashboard'}\" >Dashboard</a>\r\n              </li>\r\n              <li class=\"nav-item\" (click)=\"goTo('24h-activity-dashboard/error-logs')\"> \r\n                <a class=\"nav-link\" [ngClass]=\"{'active': currentRoute == 'error-logs'}\">Error Logs</a>\r\n              </li>\r\n              <li class=\"nav-item\" (click)=\"goTo('24h-activity-dashboard/peak-requests')\"> \r\n                <a class=\"nav-link\" [ngClass]=\"{'active': currentRoute == 'peak-requests'}\">Peak Requests</a>\r\n              </li>\r\n              <li class=\"nav-item\" (click)=\"goTo('24h-activity-dashboard/process-time-details')\"> \r\n                <a class=\"nav-link\" [ngClass]=\"{'active': currentRoute == 'process-time-details'}\">Process Time Details</a>\r\n              </li>              \r\n              <li class=\"nav-item\" (click)=\"goTo('24h-activity-dashboard/response-time-vs-throughput')\"> \r\n                <a class=\"nav-link\" [ngClass]=\"{'active': currentRoute == 'response-time-vs-throughput'}\">Response Time vs Throughput</a>\r\n              </li>\r\n              <li class=\"nav-item\" (click)=\"goTo('24h-activity-dashboard/request-and-slip-save-throughput')\"> \r\n                <a class=\"nav-link\" [ngClass]=\"{'active': currentRoute == 'request-and-slip-save-throughput'}\">Request And Slip Save Throughput</a>\r\n              </li>\r\n              <li class=\"nav-item\" (click)=\"goTo('24h-activity-dashboard/slips-per-client')\"> \r\n                <a class=\"nav-link\" [ngClass]=\"{'active': currentRoute == 'slips-per-client'}\">Slips Per Client</a>\r\n              </li>\r\n            </ul>\r\n          </div>\r\n      </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\">\r\n        <span class=\"menu-title\">Daily Report</span>\r\n        <i class=\"mdi mdi-chart-pie menu-icon\"></i>\r\n      </a>\r\n    </li>\r\n    <li class=\"nav-item\">\r\n      <a class=\"nav-link\">\r\n        <span class=\"menu-title\">Weekly Report</span>\r\n        <i class=\"mdi mdi-chart-bar menu-icon\"></i>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>"
 
 /***/ }),
 
@@ -140,7 +140,7 @@ module.exports = "<nav class=\"sidebar sidebar-offcanvas animated fadeInLeft\" i
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h4 class=\"card-title\">Slips <span class=\"float-none float-sm-right d-block mt-1 mt-sm-0 text-center\"> <i\n    class=\"mdi mdi-refresh\" (click)=\"getSlips()\"></i></span> </h4>\n<div class=\"table-responsive\">\n<table class=\"table table table-striped table-bordered table-header-dark\">\n<thead>\n    <tr>\n        <th width=\"auto\">Client</th>\n        <th width=\"33%\">Avg Slips Per Minutes</th>\n        <th width=\"33%\">Avg Price Requests Per Second</th>\n    </tr>\n</thead>\n<tbody *ngIf=\"!slips || isLoading\">\n    <tr>\n        <td colspan=\"3\" class=\"text-center\">\n            <img src=\"assets/images/loading.svg\">\n        </td>\n    </tr>\n</tbody>\n<tbody *ngIf=\"!isLoading && (!slips || slips.length == 0)\">\n    <tr>\n        <td colspan=\"3\" class=\"text-center\">\n            No slips found.\n        </td>\n    </tr>\n</tbody>\n<tbody *ngIf=\"!isLoading && slips && slips.length > 0\">\n    <tr\n        *ngFor=\"let sl of slips | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n        <td>\n            {{sl.Client}}\n        </td>\n        <td>\n            {{sl.AvgSlipsPerMinutes}}\n        </td>\n        <td>\n            {{sl.AvgPriceRequestsPerSecond}}\n        </td>\n    </tr>\n</tbody>\n</table>\n</div>\n\n<ngb-pagination *ngIf=\"slips && slips.length > pageInfo.pageSize\" [collectionSize]=\"slips.length\" [(page)]=\"pageInfo.pageNumber\"\n                [maxSize]=\"10\" [pageSize]=\"pageInfo.pageSize\"\n                class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>"
+module.exports = "<h4 class=\"card-title\">Slips per client <span class=\"float-none float-sm-right d-block mt-1 mt-sm-0 text-center\"> <i\n            class=\"mdi mdi-refresh\" (click)=\"getSlips()\"></i></span> </h4>\n<div class=\"table-responsive\">\n    <table class=\"table table-header-dark\">\n        <thead>\n            <tr>\n                <th width=\"auto\" appMdSort=\"Client\" isNumber=\"false\" (sortChange)=\"sortChange($event)\">\n                    Client\n                </th>\n                <th width=\"33%\" appMdSort=\"AvgSlipsPerMinutes\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">\n                    Avg Slips (min)\n                </th>\n                <th width=\"33%\" appMdSort=\"AvgPriceRequestsPerSecond\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">\n                    Avg Price Requests (s)\n                </th>\n            </tr>\n        </thead>\n        <tbody *ngIf=\"!slips || isLoading\">\n            <tr>\n                <td colspan=\"3\" class=\"text-center\">\n                    <img src=\"assets/images/loading.svg\">\n                </td>\n            </tr>\n        </tbody>\n        <tbody *ngIf=\"!isLoading && (!slips || slips.length == 0)\">\n            <tr>\n                <td colspan=\"3\" class=\"text-center\">\n                    No slips found.\n                </td>\n            </tr>\n        </tbody>\n        <tbody *ngIf=\"!isLoading && slips && slips.length > 0\">\n            <tr\n                *ngFor=\"let sl of slips | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                <td>\n                    {{sl.Client}}\n                </td>\n                <td>\n                    {{sl.AvgSlipsPerMinutes}}\n                </td>\n                <td>\n                    {{sl.AvgPriceRequestsPerSecond}}\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n\n<ngb-pagination *ngIf=\"slips && slips.length > pageInfo.pageSize\" [collectionSize]=\"slips.length\"\n    [(page)]=\"pageInfo.pageNumber\" [maxSize]=\"5\" [pageSize]=\"pageInfo.pageSize\"\n    class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>"
 
 /***/ }),
 
@@ -195,7 +195,7 @@ module.exports = "<div class=\"page-header\">\r\n    <h3 class=\"page-title\">\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-header\">\n    <h3 class=\"page-title\">\n        <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n            <i class=\"mdi mdi-home\"></i>\n        </span>\n        24h Activity Dashboard\n    </h3>\n    <nav aria-label=\"breadcrumb\">\n        <ul class=\"breadcrumb\">\n            <li class=\"breadcrumb-item active\" aria-current=\"page\">\n                Error Logs\n            </li>\n            <li class=\"breadcrumb-item\" aria-current=\"page\">\n                <a (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a>\n            </li>\n        </ul>\n    </nav>\n</div>\n\n<div class=\"card\">\n    <div class=\"card-body\">\n        <app-error-logs-table></app-error-logs-table>\n    </div>\n</div>"
+module.exports = "<div class=\"page-header\">\n    <h3 class=\"page-title\">\n        <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n            <i class=\"mdi mdi-home\"></i>\n        </span>\n        24h Activity Dashboard\n    </h3>\n    <nav aria-label=\"breadcrumb\" role=\"navigation\" class=\"d-none d-md-inline\">\n            <ol class=\"breadcrumb breadcrumb-custom\">                \n            <li class=\"breadcrumb-item active\" aria-current=\"page\"><span>Error Logs</span></li>\n            <li class=\"breadcrumb-item\"><a href=\"javascript:void(0)\" (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a></li>\n        </ol>\n    </nav>\n</div>\n\n<div class=\"card\">\n    <div class=\"card-body\">\n        <app-error-logs-table></app-error-logs-table>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -206,7 +206,7 @@ module.exports = "<div class=\"page-header\">\n    <h3 class=\"page-title\">\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-header\">\n    <h3 class=\"page-title\">\n        <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n            <i class=\"mdi mdi-home\"></i>\n        </span>\n        24h Activity Dashboard\n    </h3>\n    <nav aria-label=\"breadcrumb\">\n        <ul class=\"breadcrumb\">\n            <li class=\"breadcrumb-item active\" aria-current=\"page\">\n                Peak Requests\n            </li>\n            <li class=\"breadcrumb-item\" aria-current=\"page\">\n                <a (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a>\n            </li>\n        </ul>\n    </nav>\n</div>\n<div class=\"row\">\n    <div class=\"col-md-12 grid-margin stretch-card\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-peak-requests-chart (onDataChanged)=\"onDataChanged($event)\"></app-peak-requests-chart>\n                <div class=\"table-responsive\">\n                        <table class=\"table table-header-dark\">\n                            <thead>\n                                <tr>\n                                    <th>Client</th>\n                                    <th>Slip Count</th>\n                                    <th>Price Request Count</th>\n                                </tr>\n                            </thead>\n                            <tbody *ngIf=\"!data || isLoading\">\n                                <tr>\n                                    <td colspan=\"3\" class=\"text-center\">\n                                        <img src=\"assets/images/loading.svg\">\n                                    </td>\n                                </tr>\n                            </tbody>\n                            <tbody *ngIf=\"!isLoading && (!data || data.length == 0)\">\n                                <tr>\n                                    <td colspan=\"3\" class=\"text-center\">\n                                        No data.\n                                    </td>\n                                </tr>\n                            </tbody>\n                            <tbody *ngIf=\"!isLoading && data && data.length > 0\">\n                                <tr\n                                    *ngFor=\"let d of data | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                                    <td>\n                                        {{d.Client}}\n                                    </td>\n                                    <td>\n                                        {{d.SlipCount | number}}\n                                    </td>\n                                    <td>\n                                        {{d.PriceRequestCount | number}}\n                                    </td>\n                                </tr>\n                            </tbody>\n                        </table>\n                    </div>\n    \n                    <ngb-pagination *ngIf=\"data && data.length > pageInfo.pageSize\" [collectionSize]=\"data.length\"\n                        [(page)]=\"pageInfo.pageNumber\" [maxSize]=\"10\" [pageSize]=\"pageInfo.pageSize\"\n                        class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"page-header\">\n    <h3 class=\"page-title\">\n        <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n            <i class=\"mdi mdi-home\"></i>\n        </span>\n        24h Activity Dashboard\n    </h3>\n    <nav aria-label=\"breadcrumb\" role=\"navigation\" class=\"d-none d-md-inline\">\n            <ol class=\"breadcrumb breadcrumb-custom\">                \n            <li class=\"breadcrumb-item active\" aria-current=\"page\"><span>Peak Requests</span></li>\n            <li class=\"breadcrumb-item\"><a href=\"javascript:void(0)\" (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a></li>\n        </ol>\n    </nav>\n</div>\n<div class=\"row\">\n    <div class=\"col-md-12 grid-margin stretch-card\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-peak-requests-chart (onDataChanged)=\"onDataChanged($event)\"></app-peak-requests-chart>\n                <div class=\"table-responsive\">\n                        <table class=\"table table-header-dark\">\n                            <thead>\n                                <tr>\n                                    <th appMdSort=\"Client\" isNumber=\"false\" (sortChange)=\"sortChange($event)\">Client</th>\n                                    <th appMdSort=\"SlipCount\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">Slip Count</th>\n                                    <th appMdSort=\"PriceRequestCount\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">Price Request Count</th>\n                                </tr>\n                            </thead>\n                            <tbody *ngIf=\"!data || isLoading\">\n                                <tr>\n                                    <td colspan=\"3\" class=\"text-center\">\n                                        <img src=\"assets/images/loading.svg\">\n                                    </td>\n                                </tr>\n                            </tbody>\n                            <tbody *ngIf=\"!isLoading && (!data || data.length == 0)\">\n                                <tr>\n                                    <td colspan=\"3\" class=\"text-center\">\n                                        No data.\n                                    </td>\n                                </tr>\n                            </tbody>\n                            <tbody *ngIf=\"!isLoading && data && data.length > 0\">\n                                <tr\n                                    *ngFor=\"let d of data | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                                    <td>\n                                        {{d.Client}}\n                                    </td>\n                                    <td>\n                                        {{d.SlipCount | number}}\n                                    </td>\n                                    <td>\n                                        {{d.PriceRequestCount | number}}\n                                    </td>\n                                </tr>\n                            </tbody>\n                        </table>\n                    </div>\n    \n                    <ngb-pagination *ngIf=\"data && data.length > pageInfo.pageSize\" [collectionSize]=\"data.length\"\n                        [(page)]=\"pageInfo.pageNumber\" [maxSize]=\"5\" [pageSize]=\"pageInfo.pageSize\"\n                        class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -217,7 +217,7 @@ module.exports = "<div class=\"page-header\">\n    <h3 class=\"page-title\">\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">\n            <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n                <i class=\"mdi mdi-home\"></i>\n            </span>\n            24h Activity Dashboard\n        </h3>\n        <nav aria-label=\"breadcrumb\">\n            <ul class=\"breadcrumb\">\n                <li class=\"breadcrumb-item active\" aria-current=\"page\">\n                    Process Time Details\n                </li>\n                <li class=\"breadcrumb-item\" aria-current=\"page\">\n                    <a (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a>\n                </li>\n            </ul>\n        </nav>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-12 grid-margin\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <app-process-time-details-table></app-process-time-details-table>\n                </div>\n            </div>\n        </div>\n    </div>"
+module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">\n            <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n                <i class=\"mdi mdi-home\"></i>\n            </span>\n            24h Activity Dashboard\n        </h3>\n        <nav aria-label=\"breadcrumb\" role=\"navigation\" class=\"d-none d-md-inline\">\n                <ol class=\"breadcrumb breadcrumb-custom\">                \n                <li class=\"breadcrumb-item active\" aria-current=\"page\"><span>Process Time Details</span></li>\n                <li class=\"breadcrumb-item\"><a href=\"javascript:void(0)\" (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a></li>\n            </ol>\n        </nav>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-12 grid-margin\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <app-process-time-details-table></app-process-time-details-table>\n                </div>\n            </div>\n        </div>\n    </div>"
 
 /***/ }),
 
@@ -228,7 +228,7 @@ module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">\n            <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n                <i class=\"mdi mdi-home\"></i>\n            </span>\n            24h Activity Dashboard\n        </h3>\n        <nav aria-label=\"breadcrumb\">\n            <ul class=\"breadcrumb\">\n                <li class=\"breadcrumb-item active\" aria-current=\"page\">\n                    Request and Slip Save Throughput\n                </li>\n                <li class=\"breadcrumb-item\" aria-current=\"page\">\n                    <a (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a>\n                </li>\n            </ul>\n        </nav>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-md-12 grid-margin\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <app-request-slip-save-throughput-chart (onDataChanged)=\"onDataChanged($event)\"></app-request-slip-save-throughput-chart>\n    \n                    <div class=\"table-responsive\">\n                            <table class=\"table table-header-dark\">\n                                <thead>\n                                    <tr>\n                                        <th>Timestamp</th>\n                                        <th>Price Request Count</th>\n                                        <!-- <th>Price Request Speed Ms Avg</th> -->\n                                        <!-- <th>Price Request Speed Ms Min</th> -->\n                                        <!-- <th>Price Request Speed Ms Max</th> -->\n                                        <th>Slip SaveC ount</th>\n                                        <!-- <th>Slip Save Speed Ms Avg</th>\n                                        <th>Slip Save Speed Ms Min</th>\n                                        <th>Slip Save Speed Ms Max</th> -->\n                                    </tr>\n                                </thead>\n                                <tbody *ngIf=\"isLoading\">\n                                    <tr>\n                                        <td colspan=\"3\" class=\"text-center\">\n                                            <img src=\"assets/images/loading.svg\">\n                                        </td>\n                                    </tr>\n                                </tbody>\n                                <tbody *ngIf=\"!isLoading && (!data || data.length == 0)\">\n                                    <tr>\n                                        <td colspan=\"3\" class=\"text-center\">\n                                            No data.\n                                        </td>\n                                    </tr>\n                                </tbody>\n                                <tbody *ngIf=\"!isLoading && data && data.length > 0\">\n                                    <tr\n                                        *ngFor=\"let d of data | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                                        <td>{{d.Timestamp}}</td>\n                                        <td>{{d.PriceRequestCount}}</td>\n                                        <!-- <td>{{d.PriceRequestSpeedMsAvg}}</td>\n                                        <td>{{d.PriceRequestSpeedMsMin}}</td>\n                                        <td>{{d.PriceRequestSpeedMsMax}}</td> -->\n                                        <td>{{d.SlipSaveCount}}</td>\n                                        <!-- <td>{{d.SlipSaveSpeedMsAvg}}</td>\n                                        <td>{{d.SlipSaveSpeedMsMin}}</td>\n                                        <td>{{d.SlipSaveSpeedMsMax}}</td>\n                                    </tr> -->\n                                </tbody>\n                            </table>\n                        </div>\n        \n                        <ngb-pagination *ngIf=\"data && data.length > pageInfo.pageSize\" [collectionSize]=\"data.length\"\n                            [(page)]=\"pageInfo.pageNumber\" [maxSize]=\"10\" [pageSize]=\"pageInfo.pageSize\"\n                            class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>\n                </div>\n            </div>\n        </div>\n    </div>"
+module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">\n            <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n                <i class=\"mdi mdi-home\"></i>\n            </span>\n            24h Activity Dashboard\n        </h3>\n        <nav aria-label=\"breadcrumb\" role=\"navigation\" class=\"d-none d-md-inline\">\n                <ol class=\"breadcrumb breadcrumb-custom\">                \n                <li class=\"breadcrumb-item active\" aria-current=\"page\"><span>Request and Slip Save Throughput</span></li>\n                <li class=\"breadcrumb-item\"><a href=\"javascript:void(0)\" (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a></li>\n            </ol>\n        </nav>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-md-12 grid-margin\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <app-request-slip-save-throughput-chart (onDataChanged)=\"onDataChanged($event)\"></app-request-slip-save-throughput-chart>\n    \n                    <div class=\"table-responsive\">\n                            <table class=\"table table-header-dark\">\n                                <thead>\n                                    <tr>\n                                        <th>Timestamp</th>\n                                        <th appMdSort=\"PriceRequestCount\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">Price Request Count</th>\n                                        <!-- <th>Price Request Speed Ms Avg</th> -->\n                                        <!-- <th>Price Request Speed Ms Min</th> -->\n                                        <!-- <th>Price Request Speed Ms Max</th> -->\n                                        <th appMdSort=\"SlipSaveCount\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">Slip SaveC ount</th>\n                                        <!-- <th>Slip Save Speed Ms Avg</th>\n                                        <th>Slip Save Speed Ms Min</th>\n                                        <th>Slip Save Speed Ms Max</th> -->\n                                    </tr>\n                                </thead>\n                                <tbody *ngIf=\"isLoading\">\n                                    <tr>\n                                        <td colspan=\"3\" class=\"text-center\">\n                                            <img src=\"assets/images/loading.svg\">\n                                        </td>\n                                    </tr>\n                                </tbody>\n                                <tbody *ngIf=\"!isLoading && (!data || data.length == 0)\">\n                                    <tr>\n                                        <td colspan=\"3\" class=\"text-center\">\n                                            No data.\n                                        </td>\n                                    </tr>\n                                </tbody>\n                                <tbody *ngIf=\"!isLoading && data && data.length > 0\">\n                                    <tr\n                                        *ngFor=\"let d of data | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                                        <td>{{d.Timestamp}}</td>\n                                        <td>{{d.PriceRequestCount}}</td>\n                                        <!-- <td>{{d.PriceRequestSpeedMsAvg}}</td>\n                                        <td>{{d.PriceRequestSpeedMsMin}}</td>\n                                        <td>{{d.PriceRequestSpeedMsMax}}</td> -->\n                                        <td>{{d.SlipSaveCount}}</td>\n                                        <!-- <td>{{d.SlipSaveSpeedMsAvg}}</td>\n                                        <td>{{d.SlipSaveSpeedMsMin}}</td>\n                                        <td>{{d.SlipSaveSpeedMsMax}}</td>\n                                    </tr> -->\n                                </tbody>\n                            </table>\n                        </div>\n        \n                        <ngb-pagination *ngIf=\"data && data.length > pageInfo.pageSize\" [collectionSize]=\"data.length\"\n                            [(page)]=\"pageInfo.pageNumber\" [maxSize]=\"5\" [pageSize]=\"pageInfo.pageSize\"\n                            class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>\n                </div>\n            </div>\n        </div>\n    </div>"
 
 /***/ }),
 
@@ -239,7 +239,7 @@ module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-header\">\n    <h3 class=\"page-title\">\n        <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n            <i class=\"mdi mdi-home\"></i>\n        </span>\n        24h Activity Dashboard\n    </h3>\n    <nav aria-label=\"breadcrumb\">\n        <ul class=\"breadcrumb\">\n            <li class=\"breadcrumb-item active\" aria-current=\"page\">\n                Response Time vs Throughput\n            </li>\n            <li class=\"breadcrumb-item\" aria-current=\"page\">\n                <a (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a>\n            </li>\n        </ul>\n    </nav>\n</div>\n<div class=\"row\">\n    <div class=\"col-md-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-response-time-vs-throughput-chart (onDataChanged)=\"onDataChanged($event)\"></app-response-time-vs-throughput-chart>\n\n                <div class=\"table-responsive\">\n                        <table class=\"table table-header-dark\">\n                            <thead>\n                                <tr>\n                                    <th class=\"text-center\">Minute</th>\n                                    <th class=\"text-center\">Average (ms) Price Response</th>\n                                    <th class=\"text-center\">Total Price Requests</th>\n                                </tr>\n                            </thead>\n                            <tbody *ngIf=\"!data || isLoading\">\n                                <tr>\n                                    <td colspan=\"3\" class=\"text-center\">\n                                        <img src=\"assets/images/loading.svg\">\n                                    </td>\n                                </tr>\n                            </tbody>\n                            <tbody *ngIf=\"!isLoading && (!data || data.length == 0)\">\n                                <tr>\n                                    <td colspan=\"3\" class=\"text-center\">\n                                        No data.\n                                    </td>\n                                </tr>\n                            </tbody>\n                            <tbody *ngIf=\"!isLoading && data && data.length > 0\">\n                                <tr\n                                    *ngFor=\"let d of data | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                                    <td>\n                                        {{d.Minute}}\n                                    </td>\n                                    <td>\n                                        {{d.AverageMsPriceResponse | number}}\n                                    </td>\n                                    <td>\n                                        {{d.TotalPriceRequests | number}}\n                                    </td>\n                                </tr>\n                            </tbody>\n                        </table>\n                    </div>\n    \n                    <ngb-pagination *ngIf=\"data && data.length > pageInfo.pageSize\" [collectionSize]=\"data.length\"\n                        [(page)]=\"pageInfo.pageNumber\" [maxSize]=\"10\" [pageSize]=\"pageInfo.pageSize\"\n                        class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"page-header\">\n    <h3 class=\"page-title\">\n        <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n            <i class=\"mdi mdi-home\"></i>\n        </span>\n        24h Activity Dashboard\n    </h3>\n    <nav aria-label=\"breadcrumb\" role=\"navigation\" class=\"d-none d-md-inline\">\n            <ol class=\"breadcrumb breadcrumb-custom\">                \n            <li class=\"breadcrumb-item active\" aria-current=\"page\"><span>Response Time vs Throughput</span></li>\n            <li class=\"breadcrumb-item\"><a href=\"javascript:void(0)\" (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a></li>\n        </ol>\n    </nav>\n</div>\n<div class=\"row\">\n    <div class=\"col-md-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-response-time-vs-throughput-chart (onDataChanged)=\"onDataChanged($event)\"></app-response-time-vs-throughput-chart>\n\n                <div class=\"table-responsive\">\n                        <table class=\"table table-header-dark\">\n                            <thead>\n                                <tr>\n                                    <th>Minute</th>\n                                    <th appMdSort=\"AverageMsPriceResponse\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">Average (ms) Price Response</th>\n                                    <th appMdSort=\"TotalPriceRequests\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">Total Price Requests</th>\n                                </tr>\n                            </thead>\n                            <tbody *ngIf=\"!data || isLoading\">\n                                <tr>\n                                    <td colspan=\"3\" class=\"text-center\">\n                                        <img src=\"assets/images/loading.svg\">\n                                    </td>\n                                </tr>\n                            </tbody>\n                            <tbody *ngIf=\"!isLoading && (!data || data.length == 0)\">\n                                <tr>\n                                    <td colspan=\"3\" class=\"text-center\">\n                                        No data.\n                                    </td>\n                                </tr>\n                            </tbody>\n                            <tbody *ngIf=\"!isLoading && data && data.length > 0\">\n                                <tr\n                                    *ngFor=\"let d of data | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                                    <td>\n                                        {{d.Minute}}\n                                    </td>\n                                    <td>\n                                        {{d.AverageMsPriceResponse | number}}\n                                    </td>\n                                    <td>\n                                        {{d.TotalPriceRequests | number}}\n                                    </td>\n                                </tr>\n                            </tbody>\n                        </table>\n                    </div>\n    \n                    <ngb-pagination *ngIf=\"data && data.length > pageInfo.pageSize\" [collectionSize]=\"data.length\"\n                        [(page)]=\"pageInfo.pageNumber\" [maxSize]=\"5\" [pageSize]=\"pageInfo.pageSize\"\n                        class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -250,7 +250,7 @@ module.exports = "<div class=\"page-header\">\n    <h3 class=\"page-title\">\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">\n            <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n                <i class=\"mdi mdi-home\"></i>\n            </span>\n            24h Activity Dashboard\n        </h3>\n        <nav aria-label=\"breadcrumb\">\n            <ul class=\"breadcrumb\">\n                <li class=\"breadcrumb-item active\" aria-current=\"page\">\n                    Slips Per Client\n                </li>\n                <li class=\"breadcrumb-item\" aria-current=\"page\">\n                    <a (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a>\n                </li>\n            </ul>\n        </nav>\n    </div>\n    \n    <div class=\"card\">\n        <div class=\"card-body\">\n            <app-slips-per-client-table></app-slips-per-client-table>\n        </div>\n    </div>"
+module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">\n            <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n                <i class=\"mdi mdi-home\"></i>\n            </span>\n            24h Activity Dashboard\n        </h3>\n        <nav aria-label=\"breadcrumb\" role=\"navigation\" class=\"d-none d-md-inline\">\n                <ol class=\"breadcrumb breadcrumb-custom\">                \n                <li class=\"breadcrumb-item active\" aria-current=\"page\"><span>Slips Per Client</span></li>\n                <li class=\"breadcrumb-item\"><a href=\"javascript:void(0)\" (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a></li>\n            </ol>\n        </nav>\n    </div>\n    \n    <div class=\"card\">\n        <div class=\"card-body\">\n            <app-slips-per-client-table></app-slips-per-client-table>\n        </div>\n    </div>"
 
 /***/ }),
 
@@ -261,7 +261,181 @@ module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-header\">\n    <h3 class=\"page-title\">\n        <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n            <i class=\"mdi mdi-home\"></i>\n        </span>\n        24h Activity Dashboard\n    </h3>\n    <!-- <nav aria-label=\"breadcrumb\">\n        <ul class=\"breadcrumb\">\n            <li class=\"breadcrumb-item active\" aria-current=\"page\">\n                <span></span>Overview\n                <i class=\"mdi mdi-alert-circle-outline icon-sm text-primary align-middle\"></i>\n            </li>\n        </ul>\n    </nav> -->\n</div>\n<div class=\"row\">\n    <div class=\"col-md-4 stretch-card grid-margin\">\n        <div class=\"card bg-gradient-danger card-img-holder text-white\">\n            <div class=\"card-body\">\n                <img src=\"assets/images/dashboard/circle.svg\" class=\"card-img-absolute\" alt=\"circle-image\" />\n                <h4 class=\"font-weight-normal mb-3\">Clients\n                    <i class=\"mdi mdi-chart-line mdi-24px float-right\"></i>\n                </h4>\n                <h2 class=\"mb-5\">15,0000</h2>\n                <!-- <h6 class=\"card-text\">Increased by 60%</h6> -->\n            </div>\n        </div>\n    </div>\n    <div class=\"col-md-4 stretch-card grid-margin\">\n        <div class=\"card bg-gradient-info card-img-holder text-white\">\n            <div class=\"card-body\">\n                <img src=\"assets/images/dashboard/circle.svg\" class=\"card-img-absolute\" alt=\"circle-image\" />\n                <h4 class=\"font-weight-normal mb-3\">Errors\n                    <i class=\"mdi mdi-bookmark-outline mdi-24px float-right\"></i>\n                </h4>\n                <h2 class=\"mb-5\">45,6334</h2>\n                <h6 class=\"card-text\">Last error: 10 Aug 2019 02:02:00 PM</h6>\n            </div>\n        </div>\n    </div>\n    <div class=\"col-md-4 stretch-card grid-margin\">\n        <div class=\"card bg-gradient-success card-img-holder text-white\">\n            <div class=\"card-body\">\n                <img src=\"assets/images/dashboard/circle.svg\" class=\"card-img-absolute\" alt=\"circle-image\" />\n                <h4 class=\"font-weight-normal mb-3\">Requests\n                    <i class=\"mdi mdi-diamond mdi-24px float-right\"></i>\n                </h4>\n                <h2 class=\"mb-5\">95,5741</h2>\n                <h6 class=\"card-text\">Last request: 14 Aug 2019 09:01:00 AM</h6>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-peak-requests-chart [inverted]=\"true\"></app-peak-requests-chart>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-response-time-vs-throughput-chart></app-response-time-vs-throughput-chart>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-process-time-details-table></app-process-time-details-table>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-slips-per-client-table></app-slips-per-client-table>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-body\">\n                <app-error-logs-table></app-error-logs-table>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"page-header\">\n    <h3 class=\"page-title\">\n        <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n            <i class=\"mdi mdi-home\"></i>\n        </span>\n        24h Activity Dashboard\n    </h3>\n    <!-- <nav aria-label=\"breadcrumb\">\n        <ul class=\"breadcrumb\">\n            <li class=\"breadcrumb-item active\" aria-current=\"page\">\n                <span></span>Overview\n                <i class=\"mdi mdi-alert-circle-outline icon-sm text-primary align-middle\"></i>\n            </li>\n        </ul>\n    </nav> -->\n</div>\n<div class=\"row\">\n    <div class=\"col-md-4 stretch-card grid-margin\">\n        <div class=\"card bg-gradient-danger card-img-holder text-white\">\n            <div class=\"card-body\" *ngIf=\"clientCount\">\n                <img src=\"assets/images/dashboard/circle.svg\" class=\"card-img-absolute\" alt=\"circle-image\" />\n                <h4 class=\"text-dark font-weight-normal mb-3\">Clients\n                    <i class=\"mdi mdi-chart-line mdi-24px float-right\"></i>\n                </h4>\n                <h2 class=\"mb-2\">{{clientCount}}</h2>\n                <!-- <h6 class=\"card-text\">Increased by 60%</h6> -->\n            </div>\n            <div class=\"card-body text-center\" *ngIf=\"!clientCount\">\n                <img src=\"assets/images/loading.svg\">\n            </div>\n        </div>\n    </div>\n    <div class=\"col-md-4 stretch-card grid-margin\">\n        <div class=\"card bg-gradient-info card-img-holder text-white\">\n            <div class=\"card-body\" *ngIf=\"lastError\">\n                <img src=\"assets/images/dashboard/circle.svg\" class=\"card-img-absolute\" alt=\"circle-image\" />\n                <h4 class=\"text-dark font-weight-normal mb-3\">Errors\n                    <i class=\"mdi mdi-bookmark-outline mdi-24px float-right\"></i>\n                </h4>\n                <h2 class=\"mb-2\">{{errorCount}}</h2>\n                <h6 class=\"card-text\"><strong class=\"text-dark\">Last service error:</strong> {{lastError.Service}}</h6>\n                <h6 class=\"card-text\"><strong class=\"text-dark\">Last error:</strong>\n                    {{lastError.FirstTime | date: 'dd/MM/yyyy HH:ss:mm'}}</h6>\n            </div>\n            <div class=\"card-body text-center\" *ngIf=\"!lastError\">\n                <img src=\"assets/images/loading.svg\">\n            </div>\n        </div>\n    </div>\n    <div class=\"col-md-4 stretch-card grid-margin\">\n        <div class=\"card bg-gradient-success card-img-holder text-white\">\n            <div class=\"card-body\" *ngIf=\"requestHighest\">\n                <img src=\"assets/images/dashboard/circle.svg\" class=\"card-img-absolute\" alt=\"circle-image\" />\n                <h4 class=\"text-dark font-weight-normal mb-3\">Peak request highest\n                    <i class=\"mdi mdi-diamond mdi-24px float-right\"></i>\n                </h4>\n                <h2 class=\"mb-2\">{{requestHighest.Client}}</h2>\n                <h6 class=\"card-text\"><strong class=\"text-dark\">Total slip:</strong>\n                    {{requestHighest.SlipCount | number}}</h6>\n                <h6 class=\"card-text\"><strong class=\"text-dark\">Total price:</strong>\n                    ${{requestHighest.PriceRequestCount | number}}</h6>\n            </div>\n            <div class=\"card-body text-center\" *ngIf=\"!requestHighest\">\n                <img src=\"assets/images/loading.svg\">\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-md-6 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-header\">\n                Peak request chart\n                <i class=\"mdi mdi-near-me float-right icon-sm text-primary\"\n                    (click)=\"goTo('24h-activity-dashboard/peak-requests')\"></i>\n            </div>\n            <div class=\"card-body\">\n                <app-peak-requests-chart [inverted]=\"true\" (onDataChanged)=\"onPeakRequestDataChanged($event)\">\n                </app-peak-requests-chart>\n            </div>\n        </div>\n    </div>\n    <div class=\"col-md-6 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-header\">\n                Slips per client table\n                <i class=\"mdi mdi-near-me float-right icon-sm text-primary\"\n                    (click)=\"goTo('24h-activity-dashboard/slips-per-client')\"></i>\n            </div>\n            <div class=\"card-body\">\n                <app-slips-per-client-table [pageSize]=\"10\" (onDataChanged)=\"onSlipsPerClientChanged($event)\">\n                </app-slips-per-client-table>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"col-md-6 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-header\">\n                Request slip save throughput chart\n                <i class=\"mdi mdi-near-me float-right icon-sm text-primary\"\n                    (click)=\"goTo('24h-activity-dashboard/request-and-slip-save-throughput')\"></i>\n            </div>\n            <div class=\"card-body\">\n                <app-request-slip-save-throughput-chart (onDataChanged)=\"onRequestSlipSaveThroughputChanged($event)\">\n                </app-request-slip-save-throughput-chart>\n            </div>\n        </div>\n    </div>\n    <div class=\"col-md-6 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-header\">\n                Response time throughput chart\n                <i class=\"mdi mdi-near-me float-right icon-sm text-primary\"\n                    (click)=\"goTo('24h-activity-dashboard/response-time-vs-throughput')\"></i>\n            </div>\n            <div class=\"card-body\">\n                <app-response-time-vs-throughput-chart (onDataChanged)=\"onResponseTimeChanged($event)\">\n                </app-response-time-vs-throughput-chart>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-header\">\n                Process time details table\n                <i class=\"mdi mdi-near-me float-right icon-sm text-primary\"\n                    (click)=\"goTo('24h-activity-dashboard/process-time-details')\"></i>\n            </div>\n            <div class=\"card-body\">\n                <app-process-time-details-table [pageSize]=\"10\" (onDataChanged)=\"onProcessTimeDetailsChanged($event)\">\n                </app-process-time-details-table>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row\">\n    <div class=\"col-12 grid-margin\">\n        <div class=\"card\">\n            <div class=\"card-header\">\n                Error logs table\n                <i class=\"mdi mdi-near-me float-right icon-sm text-primary\"\n                    (click)=\"goTo('24h-activity-dashboard/error-logs')\"></i>\n            </div>\n            <div class=\"card-body\">\n                <app-error-logs-table [pageSize]=\"10\" (onDataChanged)=\"onErrorLogsChanged($event)\">\n                </app-error-logs-table>\n            </div>\n        </div>\n    </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/_directives/index.ts":
+/*!**************************************!*\
+  !*** ./src/app/_directives/index.ts ***!
+  \**************************************/
+/*! exports provided: MdSortDirective */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _md_sort_directive__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./md-sort.directive */ "./src/app/_directives/md-sort.directive.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MdSortDirective", function() { return _md_sort_directive__WEBPACK_IMPORTED_MODULE_0__["MdSortDirective"]; });
+
+
+
+
+/***/ }),
+
+/***/ "./src/app/_directives/md-sort.directive.ts":
+/*!**************************************************!*\
+  !*** ./src/app/_directives/md-sort.directive.ts ***!
+  \**************************************************/
+/*! exports provided: MdSortDirective */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MdSortDirective", function() { return MdSortDirective; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let MdSortDirective = class MdSortDirective {
+    constructor(el, renderer) {
+        this.el = el;
+        this.renderer = renderer;
+        this.sortChange = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.orderBy = "";
+        // bind click event
+        var self = this;
+        el.nativeElement.onclick = function () {
+            var ths = self.el.nativeElement.offsetParent.children[0].children[0].cells;
+            for (let e of ths) {
+                if (e != el) {
+                    if (e.classList.contains('asc')) {
+                        e.classList.remove('asc');
+                    }
+                    else if (e.classList.contains('desc')) {
+                        e.classList.remove('desc');
+                    }
+                }
+            }
+            self.onChangeSort();
+        };
+        // set class sortable
+        if (!el.nativeElement.classList.contains('sortable')) {
+            el.nativeElement.classList.add('sortable');
+        }
+    }
+    ngOnInit() {
+        var indicator = document.createElement('i');
+        indicator.className = "mdi md-sort-indicator";
+        this.el.nativeElement.appendChild(indicator);
+    }
+    onChangeSort() {
+        if (this.orderBy == "")
+            this.orderBy = "asc";
+        else if (this.orderBy == "asc")
+            this.orderBy = "desc";
+        else
+            this.orderBy = "";
+        // remove all ordery class
+        this.el.nativeElement.classList.remove('asc');
+        this.el.nativeElement.classList.remove('desc');
+        if (this.orderBy != "")
+            this.el.nativeElement.classList.add(this.orderBy);
+        this.sortChange.emit({ columnName: this.columnName, orderBy: this.orderBy, isNumber: this.isNumber.toLowerCase() == "true" });
+    }
+};
+MdSortDirective.ctorParameters = () => [
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])('appMdSort')
+], MdSortDirective.prototype, "columnName", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])('isNumber')
+], MdSortDirective.prototype, "isNumber", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], MdSortDirective.prototype, "sortChange", void 0);
+MdSortDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
+        selector: '[appMdSort]'
+    })
+], MdSortDirective);
+
+
+
+/***/ }),
+
+/***/ "./src/app/_helpers/coreHelper.ts":
+/*!****************************************!*\
+  !*** ./src/app/_helpers/coreHelper.ts ***!
+  \****************************************/
+/*! exports provided: CoreHelper */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CoreHelper", function() { return CoreHelper; });
+class CoreHelper {
+    /**
+     * Remove all custom properties from orginal object
+     * @param obj
+     */
+    static cleanObject(obj) {
+        // loop thought properties of obj then delete the custom properties start with '$'
+        Object.keys(obj).forEach(key => {
+            if (key.startsWith('$')) {
+                delete obj[key];
+            }
+        });
+    }
+    /**
+     * Support sort by multiple columns
+     * @param source
+     * @param sortColumn
+     * @param destination
+     */
+    static sortCollection(source, sortColumn, destination) {
+        var result = source;
+        sortColumn.forEach(function (c) {
+            if (c['columnName'] == destination['columnName']) {
+                c['orderBy'] = destination['orderBy'];
+            }
+            if (c['orderBy'] != "") {
+                result = result.sort((n1, n2) => {
+                    var v1 = CoreHelper.getNestedPropertiesValue(n1, destination['columnName']);
+                    var v2 = CoreHelper.getNestedPropertiesValue(n2, destination['columnName']);
+                    if (destination['isNumber']) {
+                        v1 = parseFloat(v1);
+                        v2 = parseFloat(v2);
+                    }
+                    if (v1 > v2) {
+                        return c['orderBy'] == "desc" ? -1 : 1;
+                    }
+                    if (v1 < v2) {
+                        return c['orderBy'] == "desc" ? 1 : -1;
+                    }
+                    return 0;
+                });
+            }
+        });
+        return result;
+    }
+    /**
+     * Get value of nested properties
+     * @param obj
+     * @param nestedProperties e.g: userProfile.fistName
+     */
+    static getNestedPropertiesValue(obj, nestedProperties) {
+        var arr = nestedProperties.split('.');
+        var value = obj;
+        arr.forEach(function (a) {
+            value = value[a.trim()];
+        });
+        return value;
+    }
+}
+
 
 /***/ }),
 
@@ -636,6 +810,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_response_time_vs_throughput_chart_response_time_vs_throughput_chart_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/response-time-vs-throughput-chart/response-time-vs-throughput-chart.component */ "./src/app/components/response-time-vs-throughput-chart/response-time-vs-throughput-chart.component.ts");
 /* harmony import */ var _components_request_slip_save_throughput_chart_request_slip_save_throughput_chart_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/request-slip-save-throughput-chart/request-slip-save-throughput-chart.component */ "./src/app/components/request-slip-save-throughput-chart/request-slip-save-throughput-chart.component.ts");
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _directives___WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./_directives/ */ "./src/app/_directives/index.ts");
 
 
 
@@ -668,6 +843,8 @@ __webpack_require__.r(__webpack_exports__);
 
 // Services
 
+// Directives
+
 let AppModule = class AppModule {
 };
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -695,6 +872,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _components_peak_requests_chart_peak_requests_chart_component__WEBPACK_IMPORTED_MODULE_26__["PeakRequestsChartComponent"],
             _components_response_time_vs_throughput_chart_response_time_vs_throughput_chart_component__WEBPACK_IMPORTED_MODULE_27__["ResponseTimeVsThroughputChartComponent"],
             _components_request_slip_save_throughput_chart_request_slip_save_throughput_chart_component__WEBPACK_IMPORTED_MODULE_28__["RequestSlipSaveThroughputChartComponent"],
+            _directives___WEBPACK_IMPORTED_MODULE_30__["MdSortDirective"],
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -798,6 +976,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var src_app_services_twenty_four_hours_activity_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/_services/twenty-four-hours-activity.service */ "./src/app/_services/twenty-four-hours-activity.service.ts");
 /* harmony import */ var src_app_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/_services */ "./src/app/_services/index.ts");
+/* harmony import */ var src_app_helpers_coreHelper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/_helpers/coreHelper */ "./src/app/_helpers/coreHelper.ts");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(underscore__WEBPACK_IMPORTED_MODULE_5__);
+
+
 
 
 
@@ -815,20 +998,33 @@ let ErrorLogsTableComponent = class ErrorLogsTableComponent {
         };
         // list of errors
         this.errors = [];
+        // event emitter
+        this.onDataChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
     ngOnInit() {
         this.getErrorLogs();
+    }
+    ngOnChanges(changes) {
+        this.pageInfo.pageSize = changes.pageSize.currentValue;
     }
     getErrorLogs() {
         this.pageInfo.pageNumber = 1;
         this.isLoading = true;
         this.services.getErrorLogs().pipe().subscribe(data => {
+            this.onDataChanged.emit(data);
             this.errors = data;
             this.isLoading = false;
         }, error => {
             this.alertService.error(error, false);
             this.isLoading = false;
         });
+    }
+    sortChange(event) {
+        var sortArray = [];
+        var sort = underscore__WEBPACK_IMPORTED_MODULE_5__["_"].find(sortArray, function (s) { return s['columnName'] == event['columnName']; });
+        if (!sort)
+            sortArray.push(event);
+        this.errors = src_app_helpers_coreHelper__WEBPACK_IMPORTED_MODULE_4__["CoreHelper"].sortCollection(this.errors, sortArray, event);
     }
 };
 ErrorLogsTableComponent.ctorParameters = () => [
@@ -838,6 +1034,9 @@ ErrorLogsTableComponent.ctorParameters = () => [
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], ErrorLogsTableComponent.prototype, "pageSize", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], ErrorLogsTableComponent.prototype, "onDataChanged", void 0);
 ErrorLogsTableComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-error-logs-table',
@@ -1133,6 +1332,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var src_app_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/_services */ "./src/app/_services/index.ts");
+/* harmony import */ var src_app_helpers_coreHelper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/_helpers/coreHelper */ "./src/app/_helpers/coreHelper.ts");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(underscore__WEBPACK_IMPORTED_MODULE_4__);
+
+
 
 
 
@@ -1149,20 +1353,33 @@ let ProcessTimeDetailsTableComponent = class ProcessTimeDetailsTableComponent {
         };
         // list of details
         this.details = [];
+        // event emitter
+        this.onDataChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
     ngOnInit() {
         this.getProcessTimeDetails();
+    }
+    ngOnChanges(changes) {
+        this.pageInfo.pageSize = changes.pageSize.currentValue;
     }
     getProcessTimeDetails() {
         this.pageInfo.pageNumber = 1;
         this.isLoading = true;
         this.services.getProcessTimeDetails().pipe().subscribe(data => {
+            this.onDataChanged.emit(data);
             this.details = data;
             this.isLoading = false;
         }, error => {
             this.alertService.error(error, false);
             this.isLoading = false;
         });
+    }
+    sortChange(event) {
+        var sortArray = [];
+        var sort = underscore__WEBPACK_IMPORTED_MODULE_4__["_"].find(sortArray, function (s) { return s['columnName'] == event['columnName']; });
+        if (!sort)
+            sortArray.push(event);
+        this.details = src_app_helpers_coreHelper__WEBPACK_IMPORTED_MODULE_3__["CoreHelper"].sortCollection(this.details, sortArray, event);
     }
 };
 ProcessTimeDetailsTableComponent.ctorParameters = () => [
@@ -1172,6 +1389,9 @@ ProcessTimeDetailsTableComponent.ctorParameters = () => [
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], ProcessTimeDetailsTableComponent.prototype, "pageSize", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], ProcessTimeDetailsTableComponent.prototype, "onDataChanged", void 0);
 ProcessTimeDetailsTableComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-process-time-details-table',
@@ -1578,12 +1798,34 @@ __webpack_require__.r(__webpack_exports__);
 let SidebarComponent = class SidebarComponent {
     constructor(router) {
         this.router = router;
+        this.currentRoute = '';
+        // trigger event when page changed
+        this.router.events
+            .subscribe((event) => {
+            this.onRouterChange(event);
+        });
     }
     ngOnInit() {
     }
     goTo(path) {
-        if (path)
+        if (path) {
             this.router.navigate([path]);
+            // check and hide sidebar
+            if (!document.body.classList.contains('turn-off-sidebar') && window.innerWidth <= 991) {
+                document.body.classList.add('turn-off-sidebar');
+            }
+        }
+    }
+    /**
+       * Event when page changed
+       * @param event
+       */
+    onRouterChange(event) {
+        if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__["NavigationEnd"]) {
+            let url = event.urlAfterRedirects.split("?")[0];
+            let parts = url.split('/');
+            this.currentRoute = parts[parts.length - 1];
+        }
     }
 };
 SidebarComponent.ctorParameters = () => [
@@ -1625,6 +1867,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var src_app_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/_services */ "./src/app/_services/index.ts");
+/* harmony import */ var src_app_helpers_coreHelper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/_helpers/coreHelper */ "./src/app/_helpers/coreHelper.ts");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(underscore__WEBPACK_IMPORTED_MODULE_4__);
+
+
 
 
 
@@ -1641,20 +1888,33 @@ let SlipsPerClientTableComponent = class SlipsPerClientTableComponent {
         };
         // list of slips
         this.slips = [];
+        // event emitter
+        this.onDataChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
     ngOnInit() {
         this.getSlips();
+    }
+    ngOnChanges(changes) {
+        this.pageInfo.pageSize = changes.pageSize.currentValue;
     }
     getSlips() {
         this.pageInfo.pageNumber = 1;
         this.isLoading = true;
         this.services.getSlipsPerClient().pipe().subscribe(data => {
+            this.onDataChanged.emit(data);
             this.slips = data;
             this.isLoading = false;
         }, error => {
             this.alertService.error(error, false);
             this.isLoading = false;
         });
+    }
+    sortChange(event) {
+        var sortArray = [];
+        var sort = underscore__WEBPACK_IMPORTED_MODULE_4__["_"].find(sortArray, function (s) { return s['columnName'] == event['columnName']; });
+        if (!sort)
+            sortArray.push(event);
+        this.slips = src_app_helpers_coreHelper__WEBPACK_IMPORTED_MODULE_3__["CoreHelper"].sortCollection(this.slips, sortArray, event);
     }
 };
 SlipsPerClientTableComponent.ctorParameters = () => [
@@ -1664,6 +1924,9 @@ SlipsPerClientTableComponent.ctorParameters = () => [
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], SlipsPerClientTableComponent.prototype, "pageSize", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+], SlipsPerClientTableComponent.prototype, "onDataChanged", void 0);
 SlipsPerClientTableComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-slips-per-client-table',
@@ -1920,10 +2183,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PeakRequestsComponent", function() { return PeakRequestsComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var src_app_helpers_coreHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/_helpers/coreHelper */ "./src/app/_helpers/coreHelper.ts");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(underscore__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
 
 
 let PeakRequestsComponent = class PeakRequestsComponent {
-    constructor() {
+    constructor(router) {
+        this.router = router;
         this.data = [];
         // loading flag
         this.isLoading = true;
@@ -1939,7 +2210,22 @@ let PeakRequestsComponent = class PeakRequestsComponent {
         this.data = data;
         this.isLoading = false;
     }
+    sortChange(event) {
+        var sortArray = [];
+        var sort = underscore__WEBPACK_IMPORTED_MODULE_3__["_"].find(sortArray, function (s) { return s['columnName'] == event['columnName']; });
+        if (!sort)
+            sortArray.push(event);
+        this.data = src_app_helpers_coreHelper__WEBPACK_IMPORTED_MODULE_2__["CoreHelper"].sortCollection(this.data, sortArray, event);
+    }
+    goTo(path) {
+        if (path) {
+            this.router.navigate([path]);
+        }
+    }
 };
+PeakRequestsComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }
+];
 PeakRequestsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-peak-requests',
@@ -1975,13 +2261,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProcessTimeDetailsComponent", function() { return ProcessTimeDetailsComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
 
 
 let ProcessTimeDetailsComponent = class ProcessTimeDetailsComponent {
-    constructor() { }
+    constructor(router) {
+        this.router = router;
+    }
     ngOnInit() {
     }
+    goTo(path) {
+        if (path) {
+            this.router.navigate([path]);
+        }
+    }
 };
+ProcessTimeDetailsComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+];
 ProcessTimeDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-process-time-details',
@@ -2017,10 +2315,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequestAndSlipSaveThroughputComponent", function() { return RequestAndSlipSaveThroughputComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var src_app_helpers_coreHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/_helpers/coreHelper */ "./src/app/_helpers/coreHelper.ts");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(underscore__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
 
 
 let RequestAndSlipSaveThroughputComponent = class RequestAndSlipSaveThroughputComponent {
-    constructor() {
+    constructor(router) {
+        this.router = router;
         this.data = [];
         // loading flag
         this.isLoading = true;
@@ -2036,7 +2342,22 @@ let RequestAndSlipSaveThroughputComponent = class RequestAndSlipSaveThroughputCo
         this.data = data;
         this.isLoading = false;
     }
+    sortChange(event) {
+        var sortArray = [];
+        var sort = underscore__WEBPACK_IMPORTED_MODULE_3__["_"].find(sortArray, function (s) { return s['columnName'] == event['columnName']; });
+        if (!sort)
+            sortArray.push(event);
+        this.data = src_app_helpers_coreHelper__WEBPACK_IMPORTED_MODULE_2__["CoreHelper"].sortCollection(this.data, sortArray, event);
+    }
+    goTo(path) {
+        if (path) {
+            this.router.navigate([path]);
+        }
+    }
 };
+RequestAndSlipSaveThroughputComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }
+];
 RequestAndSlipSaveThroughputComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-request-and-slip-save-throughput',
@@ -2072,10 +2393,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResponseTimeVsThroughputComponent", function() { return ResponseTimeVsThroughputComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var src_app_helpers_coreHelper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/_helpers/coreHelper */ "./src/app/_helpers/coreHelper.ts");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(underscore__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
 
 
 let ResponseTimeVsThroughputComponent = class ResponseTimeVsThroughputComponent {
-    constructor() {
+    constructor(router) {
+        this.router = router;
         this.data = [];
         // loading flag
         this.isLoading = true;
@@ -2091,7 +2420,22 @@ let ResponseTimeVsThroughputComponent = class ResponseTimeVsThroughputComponent 
         this.data = data;
         this.isLoading = false;
     }
+    sortChange(event) {
+        var sortArray = [];
+        var sort = underscore__WEBPACK_IMPORTED_MODULE_3__["_"].find(sortArray, function (s) { return s['columnName'] == event['columnName']; });
+        if (!sort)
+            sortArray.push(event);
+        this.data = src_app_helpers_coreHelper__WEBPACK_IMPORTED_MODULE_2__["CoreHelper"].sortCollection(this.data, sortArray, event);
+    }
+    goTo(path) {
+        if (path) {
+            this.router.navigate([path]);
+        }
+    }
 };
+ResponseTimeVsThroughputComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] }
+];
 ResponseTimeVsThroughputComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-response-time-vs-throughput',
@@ -2127,10 +2471,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlipsPerClientComponent", function() { return SlipsPerClientComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
 
 
 let SlipsPerClientComponent = class SlipsPerClientComponent {
-    constructor() {
+    constructor(router) {
+        this.router = router;
         this.data = [];
         // loading flag
         this.isLoading = true;
@@ -2146,7 +2493,15 @@ let SlipsPerClientComponent = class SlipsPerClientComponent {
         this.data = data;
         this.isLoading = false;
     }
+    goTo(path) {
+        if (path) {
+            this.router.navigate([path]);
+        }
+    }
 };
+SlipsPerClientComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
+];
 SlipsPerClientComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-slips-per-client',
@@ -2182,13 +2537,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TwentyFourHoursDashboardComponent", function() { return TwentyFourHoursDashboardComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
+/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(underscore__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
 
 
 let TwentyFourHoursDashboardComponent = class TwentyFourHoursDashboardComponent {
-    constructor() { }
+    constructor(router) {
+        this.router = router;
+        this.clientCount = 0;
+        this.errorCount = 0;
+        this.lastError = null;
+        this.requestHighest = null;
+        this.lastRequest = null;
+    }
     ngOnInit() {
     }
+    onPeakRequestDataChanged(event) {
+        this.requestHighest = underscore__WEBPACK_IMPORTED_MODULE_2__["_"].max(event, function (e) { return parseFloat(e.PriceRequestCount); });
+    }
+    onSlipsPerClientChanged(event) {
+        this.clientCount = event.length;
+    }
+    onRequestSlipSaveThroughputChanged(event) {
+    }
+    onResponseTimeChanged(event) {
+    }
+    onProcessTimeDetailsChanged(event) {
+    }
+    onErrorLogsChanged(event) {
+        this.errorCount = event.length;
+        this.lastError = event[event.length - 1];
+    }
+    goTo(path) {
+        if (path) {
+            this.router.navigate([path]);
+        }
+    }
 };
+TwentyFourHoursDashboardComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+];
 TwentyFourHoursDashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-twenty-four-hours-dashboard',
