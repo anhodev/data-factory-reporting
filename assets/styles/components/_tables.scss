@@ -1,0 +1,80 @@
+/* Tables */
+
+.table {
+  margin-bottom: 0;
+  border: 1px solid $border-color;
+  thead {
+    th {
+      border-top: 0;
+      border-bottom-width: 1px;
+      font-family: $type1-medium;
+      font-weight: initial;
+      i{
+        margin-left: 0.325rem;
+      }
+    }
+  }
+  th,
+  td {
+    vertical-align: middle;
+    font-size: $default-font-size;
+    line-height: 1;
+    padding: 0.7rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    img {
+      width: 36px;
+      height: 36px;
+      border-radius: 100%;
+    }
+    .badge {
+      margin-bottom: 0;
+    }
+  }
+  &.table-borderless{
+    border: none;
+    tr,td,th{
+      border: none;
+    }
+  }
+}
+
+.table{
+  &.table-header-dark{
+    thead {
+      th {
+        background-color: #5e7188;
+        color: $white;
+      }
+    }
+  }
+}
+
+
+/*md-sort*/
+.table > thead > tr > th.sortable{
+  cursor: pointer;
+}
+
+.table > thead > tr > th > i.md-sort-indicator {
+  position: absolute;
+}
+
+.table > thead > tr > th.sortable.asc > i.md-sort-indicator:before {
+  content: "\f143";
+}
+
+.table > thead > tr > th.sortable.desc > i.md-sort-indicator:before {
+  content: "\f140";
+}
+
+.page-link{
+  padding: 0.2rem 0.6rem;
+}
+
+@media (max-width: 360px) {
+  .page-link{
+    padding: 0.2rem 0.4rem;
+  }
+}
