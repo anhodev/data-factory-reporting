@@ -85,7 +85,7 @@ module.exports = "<nav class=\"navbar default-layout-navbar col-lg-12 col-12 p-0
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"text-center p-5\" *ngIf=\"isLoading\">\n    <img src=\"assets/images/loading.svg\">\n</div>\n<div id=\"peak-request-chart\"></div>"
+module.exports = "<div class=\"text-center p-5\" *ngIf=\"isLoading\">\n    <img src=\"assets/images/loading.svg\">\n</div>\n<div id=\"peak-request-chart\" class=\"chart-container\"></div>"
 
 /***/ }),
 
@@ -107,7 +107,7 @@ module.exports = "<h4 class=\"card-title\">Process Time Details <span class=\"fl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"text-center p-5\" *ngIf=\"isLoading\">\n    <img src=\"assets/images/loading.svg\">\n</div>\n<div id=\"request-slip-save-throughput-chart\"></div>"
+module.exports = "<div class=\"text-center p-5\" *ngIf=\"isLoading\">\n    <img src=\"assets/images/loading.svg\">\n</div>\n<div id=\"request-slip-save-throughput-chart\" class=\"chart-container\"></div>"
 
 /***/ }),
 
@@ -118,7 +118,7 @@ module.exports = "<div class=\"text-center p-5\" *ngIf=\"isLoading\">\n    <img 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"text-center p-5\" *ngIf=\"isLoading\">\r\n    <img src=\"assets/images/loading.svg\">\r\n</div>\r\n<div id=\"response-time-vs-throughput-chart\"></div>"
+module.exports = "<div class=\"text-center p-5\" *ngIf=\"isLoading\">\r\n    <img src=\"assets/images/loading.svg\">\r\n</div>\r\n<div id=\"response-time-vs-throughput-chart\" class=\"chart-container\"></div>"
 
 /***/ }),
 
@@ -228,7 +228,7 @@ module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">\n            <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n                <i class=\"mdi mdi-home\"></i>\n            </span>\n            24h Activity Dashboard\n        </h3>\n        <nav aria-label=\"breadcrumb\" role=\"navigation\" class=\"d-none d-md-inline\">\n                <ol class=\"breadcrumb breadcrumb-custom\">                \n                <li class=\"breadcrumb-item active\" aria-current=\"page\"><span>Request and Slip Save Throughput</span></li>\n                <li class=\"breadcrumb-item\"><a href=\"javascript:void(0)\" (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a></li>\n            </ol>\n        </nav>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-md-12 grid-margin\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <app-request-slip-save-throughput-chart (onDataChanged)=\"onDataChanged($event)\"></app-request-slip-save-throughput-chart>\n    \n                    <div class=\"table-responsive\">\n                            <table class=\"table table-header-dark\">\n                                <thead>\n                                    <tr>\n                                        <th>Timestamp</th>\n                                        <th appMdSort=\"PriceRequestCount\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">Price Request Count</th>\n                                        <!-- <th>Price Request Speed Ms Avg</th> -->\n                                        <!-- <th>Price Request Speed Ms Min</th> -->\n                                        <!-- <th>Price Request Speed Ms Max</th> -->\n                                        <th appMdSort=\"SlipSaveCount\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">Slip SaveC ount</th>\n                                        <!-- <th>Slip Save Speed Ms Avg</th>\n                                        <th>Slip Save Speed Ms Min</th>\n                                        <th>Slip Save Speed Ms Max</th> -->\n                                    </tr>\n                                </thead>\n                                <tbody *ngIf=\"isLoading\">\n                                    <tr>\n                                        <td colspan=\"3\" class=\"text-center\">\n                                            <img src=\"assets/images/loading.svg\">\n                                        </td>\n                                    </tr>\n                                </tbody>\n                                <tbody *ngIf=\"!isLoading && (!data || data.length == 0)\">\n                                    <tr>\n                                        <td colspan=\"3\" class=\"text-center\">\n                                            No data.\n                                        </td>\n                                    </tr>\n                                </tbody>\n                                <tbody *ngIf=\"!isLoading && data && data.length > 0\">\n                                    <tr\n                                        *ngFor=\"let d of data | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                                        <td>{{d.Timestamp}}</td>\n                                        <td>{{d.PriceRequestCount}}</td>\n                                        <!-- <td>{{d.PriceRequestSpeedMsAvg}}</td>\n                                        <td>{{d.PriceRequestSpeedMsMin}}</td>\n                                        <td>{{d.PriceRequestSpeedMsMax}}</td> -->\n                                        <td>{{d.SlipSaveCount}}</td>\n                                        <!-- <td>{{d.SlipSaveSpeedMsAvg}}</td>\n                                        <td>{{d.SlipSaveSpeedMsMin}}</td>\n                                        <td>{{d.SlipSaveSpeedMsMax}}</td>\n                                    </tr> -->\n                                </tbody>\n                            </table>\n                        </div>\n        \n                        <ngb-pagination *ngIf=\"data && data.length > pageInfo.pageSize\" [collectionSize]=\"data.length\"\n                            [(page)]=\"pageInfo.pageNumber\" [maxSize]=\"5\" [pageSize]=\"pageInfo.pageSize\"\n                            class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>\n                </div>\n            </div>\n        </div>\n    </div>"
+module.exports = "<div class=\"page-header\">\n        <h3 class=\"page-title\">\n            <span class=\"page-title-icon bg-gradient-primary text-white mr-2\">\n                <i class=\"mdi mdi-home\"></i>\n            </span>\n            24h Activity Dashboard\n        </h3>\n        <nav aria-label=\"breadcrumb\" role=\"navigation\" class=\"d-none d-md-inline\">\n                <ol class=\"breadcrumb breadcrumb-custom\">                \n                <li class=\"breadcrumb-item active\" aria-current=\"page\"><span>Request and Slip Save Throughput</span></li>\n                <li class=\"breadcrumb-item\"><a href=\"javascript:void(0)\" (click)=\"goTo('24h-activity-dashboard')\">24h Activity Dashboard</a></li>\n            </ol>\n        </nav>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-md-12 grid-margin\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <app-request-slip-save-throughput-chart (onDataChanged)=\"onDataChanged($event)\"></app-request-slip-save-throughput-chart>\n                    \n                    <div class=\"table-responsive\">\n                            <table class=\"table table-header-dark\">\n                                <thead>\n                                    <tr>\n                                        <th>Timestamp</th>\n                                        <th appMdSort=\"PriceRequestCount\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">Price Request Count</th>\n                                        <!-- <th>Price Request Speed Ms Avg</th> -->\n                                        <!-- <th>Price Request Speed Ms Min</th> -->\n                                        <!-- <th>Price Request Speed Ms Max</th> -->\n                                        <th appMdSort=\"SlipSaveCount\" isNumber=\"true\" (sortChange)=\"sortChange($event)\">Slip SaveC ount</th>\n                                        <!-- <th>Slip Save Speed Ms Avg</th>\n                                        <th>Slip Save Speed Ms Min</th>\n                                        <th>Slip Save Speed Ms Max</th> -->\n                                    </tr>\n                                </thead>\n                                <tbody *ngIf=\"isLoading\">\n                                    <tr>\n                                        <td colspan=\"3\" class=\"text-center\">\n                                            <img src=\"assets/images/loading.svg\">\n                                        </td>\n                                    </tr>\n                                </tbody>\n                                <tbody *ngIf=\"!isLoading && (!data || data.length == 0)\">\n                                    <tr>\n                                        <td colspan=\"3\" class=\"text-center\">\n                                            No data.\n                                        </td>\n                                    </tr>\n                                </tbody>\n                                <tbody *ngIf=\"!isLoading && data && data.length > 0\">\n                                    <tr\n                                        *ngFor=\"let d of data | slice: (pageInfo.pageNumber-1) * pageInfo.pageSize : (pageInfo.pageNumber-1) * pageInfo.pageSize + pageInfo.pageSize\">\n                                        <td>{{d.Timestamp}}</td>\n                                        <td>{{d.PriceRequestCount}}</td>\n                                        <!-- <td>{{d.PriceRequestSpeedMsAvg}}</td>\n                                        <td>{{d.PriceRequestSpeedMsMin}}</td>\n                                        <td>{{d.PriceRequestSpeedMsMax}}</td> -->\n                                        <td>{{d.SlipSaveCount}}</td>\n                                        <!-- <td>{{d.SlipSaveSpeedMsAvg}}</td>\n                                        <td>{{d.SlipSaveSpeedMsMin}}</td>\n                                        <td>{{d.SlipSaveSpeedMsMax}}</td>\n                                    </tr> -->\n                                </tbody>\n                            </table>\n                        </div>\n        \n                        <ngb-pagination *ngIf=\"data && data.length > pageInfo.pageSize\" [collectionSize]=\"data.length\"\n                            [(page)]=\"pageInfo.pageNumber\" [maxSize]=\"5\" [pageSize]=\"pageInfo.pageSize\"\n                            class=\"mt-2 d-flex justify-content-end pagination-danger\"></ngb-pagination>\n                </div>\n            </div>\n        </div>\n    </div>"
 
 /***/ }),
 
@@ -1191,10 +1191,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/_services */ "./src/app/_services/index.ts");
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var highcharts_modules_stock__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! highcharts/modules/stock */ "./node_modules/highcharts/modules/stock.js");
+/* harmony import */ var highcharts_modules_stock__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_stock__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
+/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
+
+highcharts_modules_stock__WEBPACK_IMPORTED_MODULE_4___default()(highcharts__WEBPACK_IMPORTED_MODULE_3__);
+
+highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_5___default()(highcharts__WEBPACK_IMPORTED_MODULE_3__);
 let PeakRequestsChartComponent = class PeakRequestsChartComponent {
     constructor(alertService, services) {
         this.alertService = alertService;
@@ -1252,8 +1260,7 @@ let PeakRequestsChartComponent = class PeakRequestsChartComponent {
             chart: {
                 type: 'column',
                 zoomType: 'y',
-                inverted: this.inverted,
-                height: '500px'
+                inverted: this.inverted
             },
             title: {
                 text: 'Peak Requests'
@@ -1429,10 +1436,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
 /* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var src_app_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/_services */ "./src/app/_services/index.ts");
+/* harmony import */ var highcharts_modules_stock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! highcharts/modules/stock */ "./node_modules/highcharts/modules/stock.js");
+/* harmony import */ var highcharts_modules_stock__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_stock__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
+/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var src_app_services__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/_services */ "./src/app/_services/index.ts");
 
 
 
+
+highcharts_modules_stock__WEBPACK_IMPORTED_MODULE_3___default()(highcharts__WEBPACK_IMPORTED_MODULE_2__);
+
+highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_4___default()(highcharts__WEBPACK_IMPORTED_MODULE_2__);
 
 let RequestSlipSaveThroughputChartComponent = class RequestSlipSaveThroughputChartComponent {
     constructor(alertService, services) {
@@ -1489,7 +1504,6 @@ let RequestSlipSaveThroughputChartComponent = class RequestSlipSaveThroughputCha
             chart: {
                 type: 'spline',
                 zoomType: 'x',
-                height: '500px',
             },
             title: {
                 text: 'Request and Slip Save Throughput'
@@ -1568,8 +1582,8 @@ let RequestSlipSaveThroughputChartComponent = class RequestSlipSaveThroughputCha
     }
 };
 RequestSlipSaveThroughputChartComponent.ctorParameters = () => [
-    { type: src_app_services__WEBPACK_IMPORTED_MODULE_3__["AlertService"] },
-    { type: src_app_services__WEBPACK_IMPORTED_MODULE_3__["twentyFourHoursActivityService"] }
+    { type: src_app_services__WEBPACK_IMPORTED_MODULE_5__["AlertService"] },
+    { type: src_app_services__WEBPACK_IMPORTED_MODULE_5__["twentyFourHoursActivityService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
@@ -1609,13 +1623,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResponseTimeVsThroughputChartComponent", function() { return ResponseTimeVsThroughputChartComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
-/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var src_app_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/_services */ "./src/app/_services/index.ts");
+/* harmony import */ var src_app_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/_services */ "./src/app/_services/index.ts");
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js");
+/* harmony import */ var highcharts__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(highcharts__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var highcharts_modules_stock__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! highcharts/modules/stock */ "./node_modules/highcharts/modules/stock.js");
+/* harmony import */ var highcharts_modules_stock__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_stock__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! highcharts/modules/exporting */ "./node_modules/highcharts/modules/exporting.js");
+/* harmony import */ var highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
+
+highcharts_modules_stock__WEBPACK_IMPORTED_MODULE_4___default()(highcharts__WEBPACK_IMPORTED_MODULE_3__);
+
+highcharts_modules_exporting__WEBPACK_IMPORTED_MODULE_5___default()(highcharts__WEBPACK_IMPORTED_MODULE_3__);
 let ResponseTimeVsThroughputChartComponent = class ResponseTimeVsThroughputChartComponent {
     constructor(alertService, services) {
         this.alertService = alertService;
@@ -1671,7 +1693,6 @@ let ResponseTimeVsThroughputChartComponent = class ResponseTimeVsThroughputChart
             chart: {
                 type: 'area',
                 zoomType: 'x',
-                height: '500px',
             },
             title: {
                 text: 'Response time vs Throughput'
@@ -1724,7 +1745,7 @@ let ResponseTimeVsThroughputChartComponent = class ResponseTimeVsThroughputChart
                         },
                         stops: [
                             [0, '#fdcf4e'],
-                            [1, new highcharts__WEBPACK_IMPORTED_MODULE_2__["Color"]("#fdcf4e").setOpacity(0).get('rgba')]
+                            [1, new highcharts__WEBPACK_IMPORTED_MODULE_3__["Color"]("#fdcf4e").setOpacity(0).get('rgba')]
                         ]
                     },
                     data: this.responseTime
@@ -1739,19 +1760,19 @@ let ResponseTimeVsThroughputChartComponent = class ResponseTimeVsThroughputChart
                         },
                         stops: [
                             [0, '#434a54'],
-                            [1, new highcharts__WEBPACK_IMPORTED_MODULE_2__["Color"]("#434a54").setOpacity(0.5).get('rgba')]
+                            [1, new highcharts__WEBPACK_IMPORTED_MODULE_3__["Color"]("#434a54").setOpacity(0.5).get('rgba')]
                         ]
                     },
                     data: this.requests
                 }
             ]
         };
-        highcharts__WEBPACK_IMPORTED_MODULE_2__["chart"]('response-time-vs-throughput-chart', options);
+        highcharts__WEBPACK_IMPORTED_MODULE_3__["chart"]('response-time-vs-throughput-chart', options);
     }
 };
 ResponseTimeVsThroughputChartComponent.ctorParameters = () => [
-    { type: src_app_services__WEBPACK_IMPORTED_MODULE_3__["AlertService"] },
-    { type: src_app_services__WEBPACK_IMPORTED_MODULE_3__["twentyFourHoursActivityService"] }
+    { type: src_app_services__WEBPACK_IMPORTED_MODULE_2__["AlertService"] },
+    { type: src_app_services__WEBPACK_IMPORTED_MODULE_2__["twentyFourHoursActivityService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
